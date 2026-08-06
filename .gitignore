@@ -1,5 +1,34 @@
+# Archivos de sistema y temporales
 .DS_Store
 *.log
 *.mp4
 *.mov
+
+# Carpetas ignoradas para repositorio GitHub
+Descripcion Archivo/
+
+Documentaci*n de referencia/
+Documentación de referencia/
+Documentación de referencia/
+
+Ima*genes a procesar/
+Imagenes a procesar/
+Imágenes a procesar/
+
+Logi*stica y gastos/
+Logística y gastos/
+Logística y gastos/
+
+[Pp]ropuesta [Cc]omercial/
+Propuesta comercial/
+Propuesta Comercial/
+
 Respaldo_Chat_IA/
+
+Triaje/
+
+# Imágenes de la carpeta "Imágenes procesadas"
+# Se ignoran todas las imágenes excepto las enlazadas desde index.html (catalogadas en Nivel 9)
+Ima*genes procesadas/*
+!Ima*genes procesadas/ES-CEDCS-ZARZA-AUDIOVISUAL-C001-P001-D001.jpg
+!Ima*genes procesadas/ES-CEDCS-ZARZA-PUBLICACIONES-C001-P002-D002.jpg
