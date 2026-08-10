@@ -50,8 +50,8 @@ Siempre que hagas un cambio, actualización o inserción en el archivo `Nivel 9 
 ## 5. Inmutabilidad de Registros Previos
 Bajo ninguna circunstancia se modificarán o eliminarán filas previas de lotes anteriores salvo solicitud directa del archivero humano.
 
-## 6. Normalización de Nombres de Archivo
-Al procesar un nuevo lote de imágenes, la IA debe renombrar automáticamente los archivos físicos de imagen para que coincidan exactamente con el `identifier` generado definitivo (con extensión `.jpg`), copiándolos a la carpeta de servidor `Imágenes procesadas`.
+## 6. Normalización de Nombres de Archivo e Imágenes Procesadas
+Al procesar un nuevo lote de imágenes, la IA debe copiar a la carpeta `Imágenes procesadas` **únicamente la imagen principal representativa** (marcada como `M`), renombrándola para que coincida exactamente con el `identifier` generado definitivo (con extensión `.jpg`). La carpeta `Imágenes procesadas` alojará exclusivamente los archivos de imagen principales necesarios para el funcionamiento del buscador web `index.html`, evitando subir tomas secundarias al servidor y a GitHub.
 
 ## 7. Principio de Catalogación del Objeto Global
 Catalogamos objetos documentales en su conjunto (ej. el libro, el cartel, la carta), no las fotografías individuales que los retratan ni sus partes fotografiadas. La descripción debe atender siempre a la naturaleza del recurso en su totalidad (evitando expresamente listas de tomas o folios como "Cubierta, página de créditos y colofón de..." o "fotografía de la portada" en favor de describir directamente la obra o documento global).
@@ -68,10 +68,11 @@ Catalogamos objetos documentales en su conjunto (ej. el libro, el cartel, la car
   2. **🖼️ Los Documentos (`D` o `DOC`) son GLOBALES Y CONSECUTIVOS a lo largo de todo el fondo:** El número de documento funciona como el identificador unívoco absoluto ("DNI" digital) en la base de datos y en la web. **NUNCA SE REINICIA** al cambiar de carpeta o caja (ej. `D001`, `D002`, `D003`, `D004`, ..., `D1000`). Esto evita colisiones de nombres de archivos fotográficos en el servidor, colapsos en la base de datos y permite un crecimiento lineal sencillo e ilimitado.
   * Esta codificación determina de forma directa los valores de `identifier` (ej. `ES-CEDCS-ZARZA-PERSONAL-C001-P001-D004`), `isPartOf` (ej. `C001-P001`), `source` y la Ubicación Física interpretada en el buscador web.
 
-## 9. Catalogación de Documentos Compuestos / Multi-Imagen (Subcarpetas)
+## 9. Catalogación de Documentos Compuestos y Transferencia Exclusiva de la Imagen Principal (`M`)
 Cuando un mismo documento físico esté compuesto por varias fotografías (ej. múltiples páginas, reverso, folleto desplegable o detalles), la carpeta `Imágenes a procesar` contendrá una o varias subcarpetas:
 1. **Unicidad de Fila por Subcarpeta:** Todas las imágenes contenidas dentro de una misma subcarpeta pertenecen al mismo recurso documental y generarán **UNA SOLA fila** en la tabla/CSV de catalogación Nivel 9.
 2. **Análisis Multimodal Conjunto:** La IA examinará y sintetizará el contenido de **todas las imágenes** de la subcarpeta para construir el título, la descripción analítica y los metadatos globales del documento.
-3. **Imagen M para la Miniatura:** Dentro de la subcarpeta, la imagen nombrada o marcada con la letra **`M`** (ej. `M.jpg`, `DOC_M.jpg`, etc.) se utilizará como la imagen principal para la miniatura del campo `source` y la vista previa visual.
-4. **Copia Plana a "Imágenes procesadas":** Al finalizar el procesamiento, **TODAS las imágenes de la subcarpeta se copiarán a la raíz de la carpeta `Imágenes procesadas`** (sin meterlas en subcarpetas), renombrándolas con el patrón oficial del `identifier` (ej. `ES-CEDCS-ZARZA-[SERIE]-C[X]-P[Y]-D[Z].jpg` para la miniatura principal `M`, y sufijos correlativos `_01.jpg`, `_02.jpg` para las imágenes secundarias del mismo documento).
+3. **Imagen M para la Miniatura Representativa:** Dentro de la subcarpeta, la imagen nombrada o marcada con la letra **`M`** (ej. `M.jpg`, `DOC_M.jpg`, etc.) se utilizará como la imagen principal para la representación visual y el campo `source`.
+4. **Copia Exclusiva de la Imagen Principal a "Imágenes procesadas":** Al finalizar el procesamiento, **ÚNICAMENTE la imagen principal `M` se copiará a la carpeta `Imágenes procesadas`**, renombrándola exactamente con el patrón del `identifier` (ej. `ES-CEDCS-ZARZA-[SERIE]-C[X]-P[Y]-D[Z].jpg`). Las tomas secundarias o de detalle no se copian a `Imágenes procesadas` para mantener el repositorio limpio y ligero, garantizando que `Imágenes procesadas` contenga estrictamente un único archivo por documento catalogado en el buscador web `index.html`.
+
 
