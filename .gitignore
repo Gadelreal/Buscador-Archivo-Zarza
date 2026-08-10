@@ -27,8 +27,6 @@ Respaldo_Chat_IA/
 
 Triaje/
 
-# Imágenes de la carpeta "Imágenes procesadas"
-# Se ignoran todas las imágenes excepto las enlazadas desde index.html (catalogadas en Nivel 9)
-Ima*genes procesadas/*
-!Ima*genes procesadas/ES-CEDCS-ZARZA-AUDIOVISUAL-C001-P001-D001.jpg
-!Ima*genes procesadas/ES-CEDCS-ZARZA-PUBLICACIONES-C001-P002-D002.jpg
+# Imágenes procesadas catalogadas en Nivel 9
+# (Permitir subir todas las imágenes procesadas al repositorio)
+
