@@ -1,6 +1,24 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const { exec } = require('child_process');
+
+// Observador automático para sincronizar cambios de Excel (.xlsx) a CSV en tiempo real
+const xlsxPath = path.join(__dirname, 'Nivel 9 (Documento simple).xlsx');
+if (fs.existsSync(xlsxPath)) {
+    let isSyncing = false;
+    fs.watchFile(xlsxPath, { interval: 1000 }, (curr, prev) => {
+        if (curr.mtime > prev.mtime && !isSyncing) {
+            isSyncing = true;
+            console.log('[AUTOSYNC] Detectada edición en Nivel 9 (Documento simple).xlsx. Actualizando CSV...');
+            exec('python3 sync_excel_csv.py to-csv', (err, stdout) => {
+                isSyncing = false;
+                if (err) console.error('[AUTOSYNC ERROR]', err.message);
+                else console.log('[AUTOSYNC SUCCESS]', stdout.trim());
+            });
+        }
+    });
+}
 
 // Usar el puerto 8000 por defecto para evitar restricciones de puertos bajos en macOS
 // pero permitir cambiarlo fácilmente mediante variable de entorno o argumento
