@@ -76,7 +76,8 @@ def csv_to_excel(csv_path="Nivel 9 (Documento simple).csv", xlsx_path="Nivel 9 (
         9: 16, # type
         10: 35, # format
         11: 30, # contributor
-        12: 45  # subject
+        12: 45, # subject
+        13: 40  # Notas
     }
 
     for col_idx, width in col_widths.items():
