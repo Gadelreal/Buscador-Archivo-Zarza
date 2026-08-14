@@ -37,10 +37,27 @@ Por cada documento procesado, la IA actuará como un archivero experto y estruct
     *   `Still Image` (para fotografías, carteles, bocetos, grabados).
     *   `Physical Object` (para objetos tridimensionales).
 *   **`format` (Formato / Soporte):** Manifestación y soporte físico deducido del objeto (ej. `Fotocopia sobre papel rojo`, `Impresión sobre papel`, `Papel impreso de prensa`).
-*   **`contributor` (Contribuidor):** Remitentes, destinatarios, coautores, ilustradores o colaboradores distintos a Rafael Zarza, separados por comas (ej. `Juan D. Goy, Quico Rivas`).
-*   **`subject` (Materia / Tags):** De 3 a 5 etiquetas temáticas normalizadas separadas por comas. Excluye ubicaciones geográficas (que ya van en `coverage`) y **NUNCA utilices los términos que coincidan con las 6 categorías fijas de `relation`** (ej. prohibido incluir `PUBLICACIONES`, `AUDIOVISUAL`, `EXPOSICIONES`, `PERSONAL`, `MILITANCIA` o `ARQUITECTURA` como materias).
-
-## 3. Comportamiento Multimodal de la IA (Precauciones)
+*   **`subject` (Materia / Tags):** De 2 a 4 etiquetas temáticas normalizadas separadas por comas, pertenecientes **EXCLUSIVAMENTE** al **Tesauro Normalizado de Materias Zarza** (categorías macrotemáticas):
+    *   `Movimiento Libertario y Anarquismo`
+    *   `Memoria Histórica y Guerra Civil`
+    *   `Artes Plásticas y Visuales`
+    *   `Diseño Gráfico y Tipografía`
+    *   `Edición y Publicaciones`
+    *   `Crítica de Arte y Comisariado`
+    *   `Contracultura y Subversión`
+    *   `Medicina, Ciencias y Salud`
+    *   `Propaganda Política e Ideología`
+    *   `Arquitectura y Espacio Urbano`
+    *   `Correspondencia y Documentación Personal`
+    *   `Fotografía y Registro Audiovisual`
+    *   `Poesía Visual y Literatura`
+    *   `Objetos y Cultura Material`
+    *   *Reglas estrictas de exclusión:*
+        1. **Prohibido incluir nombres de productores/autores:** NUNCA incluir `Rafael Zarza`, `Zarza`, `Z®Z` (se heredan del fondo).
+        2. **Prohibido incluir nombres de contribuidores/coautores:** NUNCA incluir nombres de personas (ej. `Quico Rivas`, `Josechu Dávila`), los cuales van exclusivamente en `contributor`.
+        3. **Prohibido repetir la Serie / `relation`:** NUNCA incluir `PUBLICACIONES`, `EXPOSICIONES`, `PERSONAL`, `MILITANCIA`, `AUDIOVISUAL` o `ARQUITECTURA`.
+        4. **Prohibido incluir ubicaciones geográficas:** Las ciudades o lugares (`Sevilla`, `Barcelona`, `Madrid`, etc.) van exclusivamente en `coverage`.
+        5. **Prohibido crear materias hiper-específicas de anécdotas visuales:** Elementos u objetos concretos de la obra (`Gasolinera Cepsa`, `Caracola`, `Huevo relleno`, `Gafas de sol`) se describen en `description`, NO en `subject`.
 *   **Fidelidad Transcripcional Manuscrita:** Queda estrictamente **PROHIBIDO** inventar, asumir o alucinar contenidos temáticos en documentos manuscritos. Si un texto manuscrito resulta difícil de leer, la IA debe describirlo objetivamente como texto manuscrito y consignar únicamente los fragmentos legibles con certeza (añadiendo `[sic]` o `[?]` para términos dudosos).
 *   **Caligrafía compleja / OCR:** Si un nombre o palabra presenta ambigüedad de lectura manuscrita, añade `[sic]` o `[?]` según normas de transcripción paleográfica/archivística.
 *   **Formato de Salida:** Devuelve SIEMPRE la información en formato de tabla estructurada en Markdown y CSV.
