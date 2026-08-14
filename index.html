@@ -60,11 +60,22 @@
 
     <!-- ÁREA 1: CABECERA -->
     <header class="bg-white shadow-sm border-b border-slate-200 flex-shrink-0">
-        <div class="max-w-[1440px] mx-auto px-4 md:px-8 py-3 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="flex items-baseline gap-3">
+        <div class="max-w-[1440px] mx-auto px-4 md:px-8 py-2.5 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
                 <h1 class="text-xl font-bold text-slate-900 tracking-tight">Buscador del Archivo Zarza</h1>
                 <span class="text-slate-300 select-none">|</span>
                 <p class="text-sm text-slate-500 font-medium">Fundación CEDCS</p>
+            </div>
+            <!-- Selector de Dimensión / Modo Archivístico -->
+            <div class="flex items-center gap-1.5 bg-slate-100 p-1 rounded-lg border border-slate-200 shadow-2xs">
+                <button type="button" id="tab-mode-n9" class="px-3.5 py-1.5 text-xs font-bold rounded-md transition-all shadow-xs bg-white text-corporate-700 flex items-center gap-1.5 cursor-pointer">
+                    <span>📄 Documentos</span>
+                    <span class="text-[10px] font-mono bg-corporate-50 text-corporate-700 px-1.5 py-0.5 rounded border border-corporate-200">Nivel 9</span>
+                </button>
+                <button type="button" id="tab-mode-n7" class="px-3.5 py-1.5 text-xs font-semibold rounded-md transition-all text-slate-600 hover:text-slate-900 flex items-center gap-1.5 cursor-pointer">
+                    <span>📁 Localizaciones / Carpetas</span>
+                    <span class="text-[10px] font-mono bg-slate-200/80 text-slate-700 px-1.5 py-0.5 rounded">Nivel 7</span>
+                </button>
             </div>
         </div>
     </header>
@@ -185,19 +196,21 @@
                     </button>
                     <!-- Menú desplegable -->
                     <div id="col-menu" class="hidden absolute right-0 mt-2 w-56 bg-white border border-slate-200 shadow-lg rounded-lg z-50 p-2 text-sm max-h-64 overflow-y-auto">
-                        <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="1" class="col-toggle text-corporate-600 rounded"> source</label>
-                        <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="2" class="col-toggle text-corporate-600 rounded"> identifier</label>
-                        <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="3" class="col-toggle text-corporate-600 rounded"> isPartOf</label>
-                        <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="4" class="col-toggle text-corporate-600 rounded"> title</label>
-                        <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="5" class="col-toggle text-corporate-600 rounded"> description</label>
-                        <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="6" class="col-toggle text-corporate-600 rounded"> date</label>
-                        <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="7" class="col-toggle text-corporate-600 rounded"> relation</label>
-                        <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="8" class="col-toggle text-corporate-600 rounded"> coverage</label>
-                        <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="9" class="col-toggle text-corporate-600 rounded"> type</label>
-                        <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="10" class="col-toggle text-corporate-600 rounded"> format</label>
-                        <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="11" class="col-toggle text-corporate-600 rounded"> contributor</label>
-                        <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="12" class="col-toggle text-corporate-600 rounded"> subject</label>
-                        <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="13" class="col-toggle text-corporate-600 rounded"> Ubicación Física</label>
+                        <div id="col-menu-content">
+                            <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="1" class="col-toggle text-corporate-600 rounded"> source</label>
+                            <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="2" class="col-toggle text-corporate-600 rounded"> identifier</label>
+                            <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="3" class="col-toggle text-corporate-600 rounded"> isPartOf</label>
+                            <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="4" class="col-toggle text-corporate-600 rounded"> title</label>
+                            <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="5" class="col-toggle text-corporate-600 rounded"> description</label>
+                            <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="6" class="col-toggle text-corporate-600 rounded"> date</label>
+                            <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="7" class="col-toggle text-corporate-600 rounded"> relation</label>
+                            <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="8" class="col-toggle text-corporate-600 rounded"> coverage</label>
+                            <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="9" class="col-toggle text-corporate-600 rounded"> type</label>
+                            <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="10" class="col-toggle text-corporate-600 rounded"> format</label>
+                            <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="11" class="col-toggle text-corporate-600 rounded"> contributor</label>
+                            <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="12" class="col-toggle text-corporate-600 rounded"> subject</label>
+                            <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="13" class="col-toggle text-corporate-600 rounded"> Ubicación Física</label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -222,7 +235,7 @@
             <div id="table-wrapper" class="hidden flex-1 w-full flex flex-col min-h-0">
                 <div class="table-container flex-1 overflow-auto w-full min-h-0">
                     <table class="w-full text-left border-separate border-spacing-0 min-w-full">
-                        <thead class="text-xs text-slate-700 uppercase bg-slate-100 sticky top-0 z-20 shadow-sm">
+                        <thead id="table-head" class="text-xs text-slate-700 uppercase bg-slate-100 sticky top-0 z-20 shadow-sm">
                             <tr>
                                 <th class="px-3 py-2 font-semibold min-w-[140px] select-none sticky top-0 bg-slate-100 border-b border-slate-200">
                                     <button type="button" data-header-key="source" class="header-tooltip-trigger w-full inline-flex items-center justify-between gap-1.5 px-2 py-1.5 rounded-md hover:bg-slate-200/80 group transition-all text-slate-700 hover:text-corporate-700 cursor-pointer font-bold text-xs uppercase text-left">
@@ -390,8 +403,11 @@
                 .replace(/'/g, "&#039;");
         }
 
-        // Estado Global
-        let allData = [];
+        // Estado Global Dual-Dimensión (Nivel 9 vs Nivel 7)
+        let currentMode = 'n9'; // 'n9' (Documentos) o 'n7' (Localizaciones)
+        let allDataN9 = [];
+        let allDataN7 = [];
+        let allData = []; // Referencia al dataset activo
         let filteredData = [];
         let filterOptions = {};
 
@@ -406,6 +422,11 @@
         const noResultsState = document.getElementById('no-results-state');
         const tableWrapper = document.getElementById('table-wrapper');
         const tbody = document.getElementById('results-tbody');
+        const thead = document.getElementById('table-head');
+
+        // Pestañas de Modo
+        const tabModeN9 = document.getElementById('tab-mode-n9');
+        const tabModeN7 = document.getElementById('tab-mode-n7');
 
         // Controles de Filtro
         const fGeneral = document.getElementById('filter-general');
@@ -416,6 +437,10 @@
         const fSeries = document.getElementById('filter-series');
         const fSubject = document.getElementById('filter-subject');
         const fContributor = document.getElementById('filter-contributor');
+        
+        const contributorContainer = document.getElementById('contributor-filter-container');
+        const subjectContainer = document.getElementById('subject-filter-container');
+        const colToggleBtn = document.getElementById('btn-col-toggle');
 
         const btnSearch = document.getElementById('btn-search');
         const btnClear = document.getElementById('btn-clear');
@@ -549,28 +574,107 @@
         const colIsPartOf = "isPartOf";
         const colRelation = "relation";
 
-        // 1. Cargar CSV Automáticamente
+        // 1. Cargar Datos Automáticamente (Nivel 9 por defecto)
         document.addEventListener('DOMContentLoaded', () => {
             initAutocompletes();
+            setupModeTabs();
+            loadN9Data();
+        });
+
+        function setupModeTabs() {
+            if (tabModeN9 && tabModeN7) {
+                tabModeN9.addEventListener('click', () => switchMode('n9'));
+                tabModeN7.addEventListener('click', () => switchMode('n7'));
+            }
+        }
+
+        function switchMode(mode) {
+            if (currentMode === mode && allData.length > 0) return;
+            currentMode = mode;
+
+            if (mode === 'n9') {
+                tabModeN9.className = "px-3.5 py-1.5 text-xs font-bold rounded-md transition-all shadow-xs bg-white text-corporate-700 flex items-center gap-1.5 cursor-pointer";
+                tabModeN9.querySelector('span:last-child').className = "text-[10px] font-mono bg-corporate-50 text-corporate-700 px-1.5 py-0.5 rounded border border-corporate-200";
+                
+                tabModeN7.className = "px-3.5 py-1.5 text-xs font-semibold rounded-md transition-all text-slate-600 hover:text-slate-900 flex items-center gap-1.5 cursor-pointer";
+                tabModeN7.querySelector('span:last-child').className = "text-[10px] font-mono bg-slate-200/80 text-slate-700 px-1.5 py-0.5 rounded";
+
+                if (contributorContainer) contributorContainer.classList.remove('hidden');
+                if (subjectContainer) subjectContainer.classList.remove('hidden');
+                if (colToggleBtn) colToggleBtn.classList.remove('hidden');
+                renderColumnMenu();
+
+                btnSearch.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg> Buscar Documentos`;
+                counterContainer.innerHTML = `<span class="text-sm text-slate-600 font-medium">Mostrando <span id="doc-counter" class="text-corporate-700 font-bold mx-1">0</span> documentos</span>`;
+
+                allData = allDataN9;
+                populateFilters(allDataN9);
+                renderTableHeaderN9();
+                applySearch();
+            } else {
+                tabModeN7.className = "px-3.5 py-1.5 text-xs font-bold rounded-md transition-all shadow-xs bg-white text-corporate-700 flex items-center gap-1.5 cursor-pointer";
+                tabModeN7.querySelector('span:last-child').className = "text-[10px] font-mono bg-corporate-50 text-corporate-700 px-1.5 py-0.5 rounded border border-corporate-200";
+                
+                tabModeN9.className = "px-3.5 py-1.5 text-xs font-semibold rounded-md transition-all text-slate-600 hover:text-slate-900 flex items-center gap-1.5 cursor-pointer";
+                tabModeN9.querySelector('span:last-child').className = "text-[10px] font-mono bg-slate-200/80 text-slate-700 px-1.5 py-0.5 rounded";
+
+                if (contributorContainer) contributorContainer.classList.add('hidden');
+                if (subjectContainer) subjectContainer.classList.add('hidden');
+                if (colToggleBtn) colToggleBtn.classList.remove('hidden');
+                renderColumnMenu();
+
+                btnSearch.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg> Buscar en localizaciones`;
+                counterContainer.innerHTML = `<span class="text-sm text-slate-600 font-medium">Mostrando <span id="doc-counter" class="text-corporate-700 font-bold mx-1">0</span> localizaciones (Cajas / Carpetillas)</span>`;
+
+                if (allDataN7.length === 0) {
+                    loadN7Data();
+                } else {
+                    allData = allDataN7;
+                    populateFilters(allDataN7);
+                    renderTableHeaderN7();
+                    applySearch();
+                }
+            }
+        }
+
+        function loadN9Data() {
             Papa.parse('Nivel 9 (Documento simple).csv', {
                 download: true,
                 header: true,
                 skipEmptyLines: true,
                 complete: function(results) {
-                    processData(results.data);
+                    processDataN9(results.data);
                 },
                 error: function(err) {
                     emptyState.innerHTML = `<h3 class="text-lg font-medium text-red-600">Error al leer el archivo</h3>
-                    <p class="text-sm text-slate-600 mt-2 max-w-lg">No se pudo cargar <b>Nivel 9 (Documento simple).csv</b> automáticamente. <br><br>Si has abierto este archivo haciendo doble clic en Windows (protocolo <code>file://</code>), es posible que tu navegador esté bloqueando la lectura por políticas de seguridad CORS.<br><br>Para solucionarlo, abre la carpeta con un servidor local (como la extensión Live Server de VSCode o Python http.server).</p>`;
+                    <p class="text-sm text-slate-600 mt-2 max-w-lg">No se pudo cargar <b>Nivel 9 (Documento simple).csv</b> automáticamente.</p>`;
                 }
             });
-        });
+        }
 
-        // 2. Procesamiento inicial de datos
-        function processData(data) {
-            allData = data.map(row => {
-                // Generar Ubicación Física vía Regex
-                // Soporta C001-P001-D004 así como legacy CAJA001-CARP001-DOC001
+        function loadN7Data() {
+            emptyState.classList.remove('hidden');
+            tableWrapper.classList.add('hidden');
+            emptyState.querySelector('h3').textContent = "Cargando localizaciones (Nivel 7)...";
+            emptyState.querySelector('p').textContent = "Leyendo Nivel 7 (Carpetilla simple).csv automáticamente.";
+
+            Papa.parse('Nivel 7 (Carpetilla simple).csv', {
+                download: true,
+                header: true,
+                skipEmptyLines: true,
+                complete: function(results) {
+                    processDataN7(results.data);
+                },
+                error: function(err) {
+                    emptyState.innerHTML = `<h3 class="text-lg font-medium text-red-600">Error al leer localizaciones</h3>
+                    <p class="text-sm text-slate-600 mt-2 max-w-lg">No se pudo cargar <b>Nivel 7 (Carpetilla simple).csv</b>.</p>`;
+                }
+            });
+        }
+
+        // 2. Procesamiento inicial de datos Nivel 9
+        function processDataN9(data) {
+            allDataN9 = data.map(row => {
                 let physLocation = "Desconocida";
                 const idValue = row[colId] || "";
                 
@@ -592,7 +696,6 @@
                     }
                 }
 
-                // Extraer/Obtener Serie
                 let series = "Sin Serie";
                 if (row[colRelation] && row[colRelation].trim()) {
                     const rawRelation = row[colRelation].trim();
@@ -609,18 +712,37 @@
                     }
                 }
 
-                // Inyectamos las propiedades calculadas
                 row["_UbicacionFisica"] = physLocation;
                 row["_Serie"] = series;
                 return row;
             });
 
+            allData = allDataN9;
             filteredData = [...allData];
             populateFilters(allData);
-            renderTable(filteredData);
+            renderTableHeaderN9();
+            applySearch();
             
             emptyState.classList.add('hidden');
             counterContainer.classList.remove('hidden');
+        }
+
+        // 2b. Procesamiento inicial de datos Nivel 7
+        function processDataN7(data) {
+            allDataN7 = data.map(row => {
+                let series = row.relation || "Sin Serie";
+                row["_Serie"] = series.charAt(0).toUpperCase() + series.slice(1).toLowerCase();
+                return row;
+            });
+
+            allData = allDataN7;
+            filteredData = [...allData];
+            populateFilters(allDataN7);
+            renderTableHeaderN7();
+            applySearch();
+
+            emptyState.classList.add('hidden');
+            tableWrapper.classList.remove('hidden');
         }
 
         // 3. Poblar Filtros (Selects y Datalists)
@@ -642,8 +764,8 @@
                 };
 
                 // Extraer Jerarquía Topográfica de Caja y Carpeta
-                const idVal = (row[colId] || "").trim();
-                const partOfVal = (row[colIsPartOf] || "").trim();
+                const idVal = (row.identifier || row[colId] || "").trim();
+                const partOfVal = (row.rotulo || row[colIsPartOf] || "").trim();
                 const physVal = (row["_UbicacionFisica"] || "").trim();
 
                 let boxCode = "";
@@ -811,7 +933,7 @@
             });
         }
 
-        // 4. Lógica de Búsqueda
+        // 4. Lógica de Búsqueda (Dual N9 / N7)
         function applySearch() {
             if (allData.length === 0) return;
 
@@ -821,23 +943,21 @@
             const selectedBox = fBox ? fBox.value.toUpperCase().trim() : "";
             const selectedFolder = fFolder ? fFolder.value.toUpperCase().trim() : "";
             const vSer = fSeries.value.toLowerCase().trim();
-            const vSub = fSubject.value.toLowerCase().trim();
-            const vCon = fContributor.value.toLowerCase().trim();
+            const vSub = fSubject ? fSubject.value.toLowerCase().trim() : "";
+            const vCon = fContributor ? fContributor.value.toLowerCase().trim() : "";
 
             filteredData = allData.filter(row => {
-                // Lógica AND: asumimos true y apagamos si falla
-                
-                // General
+                // Búsqueda General
                 if (vGen) {
                     const allText = Object.values(row).join(' ').toLowerCase();
                     if (!allText.includes(vGen)) return false;
                 }
 
-                // Rango Fechas (Extrayendo el año con regex 4 dígitos exactos y soporte de rangos)
+                // Rango Fechas
                 if (!isNaN(vFrom) || !isNaN(vTo)) {
-                    const dateStr = row[colDate] || "";
+                    const dateStr = row[currentMode === 'n7' ? 'date' : colDate] || "";
                     const yearMatches = dateStr.match(/\b\d{4}\b/g);
-                    if (!yearMatches || yearMatches.length === 0) return false; // Si no hay año y hay filtro, descarta
+                    if (!yearMatches || yearMatches.length === 0) return false;
                     
                     const yearNums = yearMatches.map(y => parseInt(y, 10));
                     const minYear = Math.min(...yearNums);
@@ -847,21 +967,21 @@
                     if (!isNaN(vTo) && minYear > vTo) return false;
                 }
 
-                // Topografía / Ubicación Física (Cascada Caja -> Carpeta)
+                // Topografía / Ubicación Física (Caja -> Carpeta)
                 if (selectedFolder) {
-                    const rowPartOf = (row[colIsPartOf] || "").toUpperCase();
-                    const rowId = (row[colId] || "").toUpperCase();
-                    if (!rowPartOf.includes(selectedFolder) && !rowId.includes(selectedFolder)) {
+                    const rowRotulo = (row.rotulo || row[colIsPartOf] || "").toUpperCase();
+                    const rowId = (row.identifier || row[colId] || "").toUpperCase();
+                    if (!rowRotulo.includes(selectedFolder) && !rowId.includes(selectedFolder)) {
                         return false;
                     }
                 } else if (selectedBox) {
-                    const rowPartOf = (row[colIsPartOf] || "").toUpperCase();
-                    const rowId = (row[colId] || "").toUpperCase();
+                    const rowRotulo = (row.rotulo || row[colIsPartOf] || "").toUpperCase();
+                    const rowId = (row.identifier || row[colId] || "").toUpperCase();
                     const rowPhys = (row["_UbicacionFisica"] || "").toUpperCase();
                     const boxNumMatch = selectedBox.match(/\d+/);
                     const boxNumStr = boxNumMatch ? parseInt(boxNumMatch[0], 10).toString() : "";
 
-                    const matchesCode = rowPartOf.includes(selectedBox) || rowId.includes(selectedBox);
+                    const matchesCode = rowRotulo.includes(selectedBox) || rowId.includes(selectedBox);
                     const matchesPhys = boxNumStr ? rowPhys.includes(`CAJA ${boxNumStr}`) : false;
 
                     if (!matchesCode && !matchesPhys) {
@@ -869,7 +989,7 @@
                     }
                 }
 
-                // Serie: Lógica OR en multiselección por checkboxes
+                // Serie
                 if (selections.series.length > 0) {
                     const rowSeries = (row["_Serie"] || "").toLowerCase();
                     const matchesAny = selections.series.some(ser => rowSeries.includes(ser.toLowerCase()));
@@ -878,24 +998,25 @@
                     return false;
                 }
 
-                // Contribuidor: Lógica OR en multiselección por checkboxes
-                if (selections.contributor.length > 0) {
-                    const rowContributor = (row[colContributor] || "").toLowerCase();
-                    const matchesAny = selections.contributor.some(con => rowContributor.includes(con.toLowerCase()));
-                    if (!matchesAny) return false;
-                } else if (vCon && !(row[colContributor] || "").toLowerCase().includes(vCon)) {
-                    return false;
-                }
+                // Filtros específicos solo aplicables a Nivel 9
+                if (currentMode === 'n9') {
+                    if (selections.contributor.length > 0) {
+                        const rowContributor = (row[colContributor] || "").toLowerCase();
+                        const matchesAny = selections.contributor.some(con => rowContributor.includes(con.toLowerCase()));
+                        if (!matchesAny) return false;
+                    } else if (vCon && !(row[colContributor] || "").toLowerCase().includes(vCon)) {
+                        return false;
+                    }
 
-                // Etiquetas / Materias: Lógica AND en multiselección por checkboxes
-                if (selections.subject.length > 0) {
-                    const rowTags = (row[colSubject] || "").toLowerCase().split(',').map(t => t.trim());
-                    const matchesAll = selections.subject.every(tag => {
-                        return rowTags.some(rowTag => rowTag.includes(tag.toLowerCase()));
-                    });
-                    if (!matchesAll) return false;
-                } else if (vSub && !(row[colSubject] || "").toLowerCase().includes(vSub)) {
-                    return false;
+                    if (selections.subject.length > 0) {
+                        const rowTags = (row[colSubject] || "").toLowerCase().split(',').map(t => t.trim());
+                        const matchesAll = selections.subject.every(tag => {
+                            return rowTags.some(rowTag => rowTag.includes(tag.toLowerCase()));
+                        });
+                        if (!matchesAll) return false;
+                    } else if (vSub && !(row[colSubject] || "").toLowerCase().includes(vSub)) {
+                        return false;
+                    }
                 }
 
                 return true;
@@ -904,6 +1025,219 @@
             currentPage = 1;
             renderTable(filteredData);
             updateClearButtonState();
+        }
+
+        function renderTableHeaderN9() {
+            if (!thead) return;
+            thead.innerHTML = `
+                <tr>
+                    <th class="px-3 py-2 font-semibold min-w-[140px] select-none sticky top-0 bg-slate-100 border-b border-slate-200">
+                        <button type="button" data-header-key="source" class="header-tooltip-trigger w-full inline-flex items-center justify-between gap-1.5 px-2 py-1.5 rounded-md hover:bg-slate-200/80 group transition-all text-slate-700 hover:text-corporate-700 cursor-pointer font-bold text-xs uppercase text-left">
+                            <span>source</span>
+                            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-corporate-600 transition-colors flex-shrink-0 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </button>
+                    </th>
+                    <th class="px-3 py-2 font-semibold whitespace-nowrap select-none sticky top-0 bg-slate-100 border-b border-slate-200">
+                        <button type="button" data-header-key="identifier" class="header-tooltip-trigger w-full inline-flex items-center justify-between gap-1.5 px-2 py-1.5 rounded-md hover:bg-slate-200/80 group transition-all text-slate-700 hover:text-corporate-700 cursor-pointer font-bold text-xs uppercase text-left">
+                            <span>identifier</span>
+                            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-corporate-600 transition-colors flex-shrink-0 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </button>
+                    </th>
+                    <th class="px-3 py-2 font-semibold whitespace-nowrap select-none sticky top-0 bg-slate-100 border-b border-slate-200">
+                        <button type="button" data-header-key="isPartOf" class="header-tooltip-trigger w-full inline-flex items-center justify-between gap-1.5 px-2 py-1.5 rounded-md hover:bg-slate-200/80 group transition-all text-slate-700 hover:text-corporate-700 cursor-pointer font-bold text-xs uppercase text-left">
+                            <span>isPartOf</span>
+                            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-corporate-600 transition-colors flex-shrink-0 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </button>
+                    </th>
+                    <th class="px-3 py-2 font-semibold min-w-[200px] select-none sticky top-0 bg-slate-100 border-b border-slate-200">
+                        <button type="button" data-header-key="title" class="header-tooltip-trigger w-full inline-flex items-center justify-between gap-1.5 px-2 py-1.5 rounded-md hover:bg-slate-200/80 group transition-all text-slate-700 hover:text-corporate-700 cursor-pointer font-bold text-xs uppercase text-left">
+                            <span>title</span>
+                            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-corporate-600 transition-colors flex-shrink-0 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </button>
+                    </th>
+                    <th class="px-3 py-2 font-semibold w-full min-w-[300px] select-none sticky top-0 bg-slate-100 border-b border-slate-200">
+                        <button type="button" data-header-key="description" class="header-tooltip-trigger w-full inline-flex items-center justify-between gap-1.5 px-2 py-1.5 rounded-md hover:bg-slate-200/80 group transition-all text-slate-700 hover:text-corporate-700 cursor-pointer font-bold text-xs uppercase text-left">
+                            <span>description</span>
+                            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-corporate-600 transition-colors flex-shrink-0 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </button>
+                    </th>
+                    <th class="px-3 py-2 font-semibold whitespace-nowrap select-none sticky top-0 bg-slate-100 border-b border-slate-200">
+                        <button type="button" data-header-key="date" class="header-tooltip-trigger w-full inline-flex items-center justify-between gap-1.5 px-2 py-1.5 rounded-md hover:bg-slate-200/80 group transition-all text-slate-700 hover:text-corporate-700 cursor-pointer font-bold text-xs uppercase text-left">
+                            <span>date</span>
+                            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-corporate-600 transition-colors flex-shrink-0 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </button>
+                    </th>
+                    <th class="px-3 py-2 font-semibold whitespace-nowrap select-none sticky top-0 bg-slate-100 border-b border-slate-200">
+                        <button type="button" data-header-key="relation" class="header-tooltip-trigger w-full inline-flex items-center justify-between gap-1.5 px-2 py-1.5 rounded-md hover:bg-slate-200/80 group transition-all text-slate-700 hover:text-corporate-700 cursor-pointer font-bold text-xs uppercase text-left">
+                            <span>relation</span>
+                            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-corporate-600 transition-colors flex-shrink-0 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </button>
+                    </th>
+                    <th class="px-3 py-2 font-semibold min-w-[120px] select-none sticky top-0 bg-slate-100 border-b border-slate-200">
+                        <button type="button" data-header-key="coverage" class="header-tooltip-trigger w-full inline-flex items-center justify-between gap-1.5 px-2 py-1.5 rounded-md hover:bg-slate-200/80 group transition-all text-slate-700 hover:text-corporate-700 cursor-pointer font-bold text-xs uppercase text-left">
+                            <span>coverage</span>
+                            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-corporate-600 transition-colors flex-shrink-0 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </button>
+                    </th>
+                    <th class="px-3 py-2 font-semibold whitespace-nowrap select-none sticky top-0 bg-slate-100 border-b border-slate-200">
+                        <button type="button" data-header-key="type" class="header-tooltip-trigger w-full inline-flex items-center justify-between gap-1.5 px-2 py-1.5 rounded-md hover:bg-slate-200/80 group transition-all text-slate-700 hover:text-corporate-700 cursor-pointer font-bold text-xs uppercase text-left">
+                            <span>type</span>
+                            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-corporate-600 transition-colors flex-shrink-0 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </button>
+                    </th>
+                    <th class="px-3 py-2 font-semibold min-w-[150px] select-none sticky top-0 bg-slate-100 border-b border-slate-200">
+                        <button type="button" data-header-key="format" class="header-tooltip-trigger w-full inline-flex items-center justify-between gap-1.5 px-2 py-1.5 rounded-md hover:bg-slate-200/80 group transition-all text-slate-700 hover:text-corporate-700 cursor-pointer font-bold text-xs uppercase text-left">
+                            <span>format</span>
+                            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-corporate-600 transition-colors flex-shrink-0 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </button>
+                    </th>
+                    <th class="px-3 py-2 font-semibold min-w-[180px] select-none sticky top-0 bg-slate-100 border-b border-slate-200">
+                        <button type="button" data-header-key="contributor" class="header-tooltip-trigger w-full inline-flex items-center justify-between gap-1.5 px-2 py-1.5 rounded-md hover:bg-slate-200/80 group transition-all text-slate-700 hover:text-corporate-700 cursor-pointer font-bold text-xs uppercase text-left">
+                            <span>contributor</span>
+                            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-corporate-600 transition-colors flex-shrink-0 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </button>
+                    </th>
+                    <th class="px-3 py-2 font-semibold min-w-[200px] select-none sticky top-0 bg-slate-100 border-b border-slate-200">
+                        <button type="button" data-header-key="subject" class="header-tooltip-trigger w-full inline-flex items-center justify-between gap-1.5 px-2 py-1.5 rounded-md hover:bg-slate-200/80 group transition-all text-slate-700 hover:text-corporate-700 cursor-pointer font-bold text-xs uppercase text-left">
+                            <span>subject</span>
+                            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-corporate-600 transition-colors flex-shrink-0 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </button>
+                    </th>
+                    <th class="px-3 py-2 font-semibold whitespace-nowrap select-none sticky top-0 bg-slate-100 border-b border-slate-200">
+                        <button type="button" data-header-key="ubifisica" class="header-tooltip-trigger w-full inline-flex items-center justify-between gap-1.5 px-2 py-1.5 rounded-md hover:bg-slate-200/80 group transition-all text-slate-700 hover:text-corporate-700 cursor-pointer font-bold text-xs uppercase text-left">
+                            <span>Ubicación Física</span>
+                            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-corporate-600 transition-colors flex-shrink-0 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </button>
+                    </th>
+                </tr>
+            `;
+            attachHeaderPopoverListeners();
+        }
+
+        function renderTableHeaderN7() {
+            if (!thead) return;
+            thead.innerHTML = `
+                <tr>
+                    <th class="px-3 py-2 font-semibold whitespace-nowrap select-none sticky top-0 bg-slate-100 border-b border-slate-200">
+                        <button type="button" data-header-key="n7_rotulo" class="header-tooltip-trigger w-full inline-flex items-center justify-between gap-1.5 px-2 py-1.5 rounded-md hover:bg-slate-200/80 group transition-all text-slate-700 hover:text-corporate-700 cursor-pointer font-bold text-xs uppercase text-left">
+                            <span>Rótulo Físico</span>
+                            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-corporate-600 transition-colors flex-shrink-0 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </button>
+                    </th>
+                    <th class="px-3 py-2 font-semibold whitespace-nowrap select-none sticky top-0 bg-slate-100 border-b border-slate-200">
+                        <button type="button" data-header-key="n7_identifier" class="header-tooltip-trigger w-full inline-flex items-center justify-between gap-1.5 px-2 py-1.5 rounded-md hover:bg-slate-200/80 group transition-all text-slate-700 hover:text-corporate-700 cursor-pointer font-bold text-xs uppercase text-left">
+                            <span>Código ISAD(G)</span>
+                            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-corporate-600 transition-colors flex-shrink-0 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </button>
+                    </th>
+                    <th class="px-3 py-2 font-semibold min-w-[240px] select-none sticky top-0 bg-slate-100 border-b border-slate-200">
+                        <button type="button" data-header-key="n7_title" class="header-tooltip-trigger w-full inline-flex items-center justify-between gap-1.5 px-2 py-1.5 rounded-md hover:bg-slate-200/80 group transition-all text-slate-700 hover:text-corporate-700 cursor-pointer font-bold text-xs uppercase text-left">
+                            <span>1.2 Título Atribuido</span>
+                            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-corporate-600 transition-colors flex-shrink-0 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </button>
+                    </th>
+                    <th class="px-3 py-2 font-semibold whitespace-nowrap select-none sticky top-0 bg-slate-100 border-b border-slate-200">
+                        <button type="button" data-header-key="n7_date" class="header-tooltip-trigger w-full inline-flex items-center justify-between gap-1.5 px-2 py-1.5 rounded-md hover:bg-slate-200/80 group transition-all text-slate-700 hover:text-corporate-700 cursor-pointer font-bold text-xs uppercase text-left">
+                            <span>1.3 Fechas</span>
+                            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-corporate-600 transition-colors flex-shrink-0 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </button>
+                    </th>
+                    <th class="px-3 py-2 font-semibold min-w-[180px] select-none sticky top-0 bg-slate-100 border-b border-slate-200">
+                        <button type="button" data-header-key="n7_format" class="header-tooltip-trigger w-full inline-flex items-center justify-between gap-1.5 px-2 py-1.5 rounded-md hover:bg-slate-200/80 group transition-all text-slate-700 hover:text-corporate-700 cursor-pointer font-bold text-xs uppercase text-left">
+                            <span>1.5 Extensión / Soporte</span>
+                            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-corporate-600 transition-colors flex-shrink-0 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </button>
+                    </th>
+                    <th class="px-3 py-2 font-semibold w-full min-w-[320px] select-none sticky top-0 bg-slate-100 border-b border-slate-200">
+                        <button type="button" data-header-key="n7_description" class="header-tooltip-trigger w-full inline-flex items-center justify-between gap-1.5 px-2 py-1.5 rounded-md hover:bg-slate-200/80 group transition-all text-slate-700 hover:text-corporate-700 cursor-pointer font-bold text-xs uppercase text-left">
+                            <span>3.1 Alcance y Contenido</span>
+                            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-corporate-600 transition-colors flex-shrink-0 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </button>
+                    </th>
+                    <th class="px-3 py-2 font-semibold whitespace-nowrap text-center select-none sticky top-0 bg-slate-100 border-b border-slate-200">
+                        <button type="button" data-header-key="n7_action" class="header-tooltip-trigger w-full inline-flex items-center justify-center gap-1.5 px-2 py-1.5 rounded-md hover:bg-slate-200/80 group transition-all text-slate-700 hover:text-corporate-700 cursor-pointer font-bold text-xs uppercase text-center">
+                            <span>Acción</span>
+                            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-corporate-600 transition-colors flex-shrink-0 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </button>
+                    </th>
+                </tr>
+            `;
+            attachHeaderPopoverListeners();
+        }
+
+        function attachHeaderPopoverListeners() {
+            if (!thead) return;
+            thead.querySelectorAll('.header-tooltip-trigger').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const key = btn.getAttribute('data-header-key');
+                    if (key) showGlobalHeaderPopover(e, key);
+                });
+            });
+        }
+
+        function getDocCountForLocation(rotulo) {
+            if (!rotulo || !allDataN9 || allDataN9.length === 0) return 0;
+            const target = rotulo.trim().toUpperCase();
+            return allDataN9.filter(doc => {
+                const partOf = (doc[colIsPartOf] || "").trim().toUpperCase();
+                const id = (doc[colId] || "").trim().toUpperCase();
+                return partOf === target || id.includes(`-${target}-`) || id.endsWith(`-${target}`);
+            }).length;
+        }
+
+        function jumpToN9(rotulo) {
+            switchMode('n9');
+            if (!rotulo) return;
+            const matchBox = rotulo.match(/^C(\d+)/i);
+            if (matchBox) {
+                const boxCode = "C" + matchBox[1].padStart(3, '0');
+                if (fBox) fBox.value = boxCode;
+                updateFolderDropdown();
+                if (fFolder && rotulo.includes('-P')) {
+                    fFolder.value = rotulo;
+                }
+            }
+            applySearch();
         }
 
         // Gestión manual de colapso/expansión de filtros
@@ -924,8 +1258,8 @@
                 (fBox && fBox.value !== "") ||
                 (fFolder && fFolder.value !== "") ||
                 fSeries.value.trim() !== "" ||
-                fSubject.value.trim() !== "" ||
-                fContributor.value.trim() !== "" ||
+                (fSubject && fSubject.value.trim() !== "") ||
+                (fContributor && fContributor.value.trim() !== "") ||
                 selections.series.length > 0 ||
                 selections.subject.length > 0 ||
                 selections.contributor.length > 0;
@@ -941,9 +1275,10 @@
             }
         }
 
-        // 5. Renderizado de Tabla con Paginación
+        // 5. Renderizado de Tabla con Paginación (Dual N9 / N7)
         function renderTable(data) {
-            docCounter.textContent = data.length;
+            const docCounterEl = document.getElementById('doc-counter');
+            if (docCounterEl) docCounterEl.textContent = data.length;
             tbody.innerHTML = '';
 
             const vGen = fGeneral.value.trim();
@@ -983,7 +1318,8 @@
             const pageData = data.slice(startIdx, endIdx);
 
             const pageInfo = document.getElementById('pagination-info');
-            if (pageInfo) pageInfo.textContent = `Mostrando ${totalRecords > 0 ? startIdx + 1 : 0} - ${endIdx} de ${totalRecords} documentos`;
+            const entityLabel = currentMode === 'n7' ? 'localizaciones' : 'documentos';
+            if (pageInfo) pageInfo.textContent = `Mostrando ${totalRecords > 0 ? startIdx + 1 : 0} - ${endIdx} de ${totalRecords} ${entityLabel}`;
             const pageDisplay = document.getElementById('page-current-display');
             if (pageDisplay) pageDisplay.textContent = `Pág ${currentPage} de ${totalPages}`;
             
@@ -996,6 +1332,85 @@
             if (btnPrev) btnPrev.disabled = (currentPage === 1);
             if (btnNext) btnNext.disabled = (currentPage === totalPages);
             if (btnLast) btnLast.disabled = (currentPage === totalPages);
+
+            // Renderizado en Modo Nivel 7 (Localizaciones)
+            if (currentMode === 'n7') {
+                pageData.forEach((row, idx) => {
+                    const isFolder = row.rotulo && row.rotulo.includes('-P');
+                    const tr = document.createElement('tr');
+                    const isEvenRow = (idx + 1) % 2 === 0;
+                    if (!isFolder) {
+                        tr.className = "bg-amber-50/40 hover:bg-amber-100/60 transition-colors align-middle border-b border-amber-200/80 font-medium";
+                    } else {
+                        tr.className = `${isEvenRow ? 'bg-slate-50/80' : 'bg-white'} hover:bg-slate-100 transition-colors align-middle border-b border-slate-200`;
+                    }
+
+                    const tdRotulo = document.createElement('td');
+                    tdRotulo.className = "px-2.5 py-2 whitespace-nowrap font-mono text-xs";
+                    if (isFolder) {
+                        tdRotulo.innerHTML = `
+                            <div class="flex items-center gap-1.5 pl-5">
+                                <span class="text-slate-300 font-sans text-xs select-none">└─</span>
+                                <svg class="w-4 h-4 text-corporate-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                                </svg>
+                                <span class="text-corporate-700 font-bold">${highlight(row.rotulo, null)}</span>
+                            </div>
+                        `;
+                    } else {
+                        tdRotulo.innerHTML = `
+                            <div class="flex items-center gap-1.5 font-bold">
+                                <svg class="w-4 h-4 text-amber-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                                </svg>
+                                <span class="bg-amber-100/80 text-amber-900 px-1.5 py-0.5 rounded border border-amber-300 shadow-2xs">${highlight(row.rotulo, null)}</span>
+                            </div>
+                        `;
+                    }
+
+                    const tdId = document.createElement('td');
+                    tdId.className = "px-2.5 py-2 whitespace-nowrap font-mono text-xs text-slate-700 font-semibold";
+                    tdId.innerHTML = highlight(row.identifier, null);
+
+                    const tdTit = document.createElement('td');
+                    tdTit.className = "px-2.5 py-2 text-slate-900 font-medium text-xs max-w-[240px]";
+                    tdTit.innerHTML = `<div class="line-clamp-2 hover:line-clamp-none transition-all cursor-pointer leading-snug">${highlight(row.title, null)}</div>`;
+
+                    const tdDate = document.createElement('td');
+                    tdDate.className = "px-2.5 py-2 whitespace-nowrap text-slate-800 font-mono text-xs font-medium";
+                    tdDate.innerHTML = highlight(row.date, null);
+
+                    const tdFormat = document.createElement('td');
+                    tdFormat.className = "px-2.5 py-2 text-xs text-slate-700 max-w-[180px]";
+                    tdFormat.innerHTML = highlight(row.format, null);
+
+                    const tdDesc = document.createElement('td');
+                    tdDesc.className = "px-2.5 py-2 text-slate-700 text-xs max-w-[320px]";
+                    tdDesc.innerHTML = `<div class="line-clamp-2 hover:line-clamp-none transition-all cursor-pointer leading-snug">${highlight(row.description, null)}</div>`;
+
+                    const tdAction = document.createElement('td');
+                    tdAction.className = "px-2.5 py-2 whitespace-nowrap text-center";
+                    
+                    const docCount = getDocCountForLocation(row.rotulo);
+                    if (docCount > 0) {
+                        const btnJump = document.createElement('button');
+                        btnJump.type = "button";
+                        btnJump.className = "px-2.5 py-1 text-xs font-bold bg-corporate-600 hover:bg-corporate-700 text-white rounded transition-all inline-flex items-center gap-1.5 cursor-pointer shadow-xs";
+                        btnJump.innerHTML = `<span>Ver ${docCount} doc${docCount > 1 ? 's' : ''}</span><svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>`;
+                        btnJump.addEventListener('click', () => jumpToN9(row.rotulo));
+                        tdAction.appendChild(btnJump);
+                    } else {
+                        const noDocs = document.createElement('span');
+                        noDocs.className = "text-[11px] text-slate-400 font-medium italic";
+                        noDocs.textContent = "Sin docs";
+                        tdAction.appendChild(noDocs);
+                    }
+
+                    tr.append(tdRotulo, tdId, tdTit, tdDate, tdFormat, tdDesc, tdAction);
+                    tbody.appendChild(tr);
+                });
+                return;
+            }
 
             pageData.forEach((row, idx) => {
                 const tr = document.createElement('tr');
@@ -1056,10 +1471,15 @@
                 tdId.className = "px-2.5 py-1.5 whitespace-nowrap font-mono text-xs text-slate-800 font-bold";
                 tdId.innerHTML = highlight(row[colId], null);
                 
+                const isNotDefinitive = (row.Notas || row["Notas"] || "").toLowerCase().includes("no definitiva");
+                const warningIconHtml = isNotDefinitive 
+                    ? `<span class="inline-flex items-center justify-center w-4 h-4 bg-red-100 text-red-600 font-extrabold text-[11px] rounded-full border border-red-300 cursor-help flex-shrink-0 shadow-2xs" title="Ubicación física no definitiva">!</span>`
+                    : '';
+
                 const topoTerm = (fFolder && fFolder.value) || (fBox && fBox.value) || null;
                 const tdIsPartOf = document.createElement('td');
                 tdIsPartOf.className = "px-2.5 py-1.5 whitespace-nowrap font-mono text-xs text-slate-700 font-semibold";
-                tdIsPartOf.innerHTML = highlight(row[colIsPartOf], topoTerm);
+                tdIsPartOf.innerHTML = `<span class="inline-flex items-center gap-1"><span>${highlight(row[colIsPartOf], topoTerm)}</span>${warningIconHtml}</span>`;
                 
                 const tdTit = document.createElement('td');
                 tdTit.className = "px-2.5 py-1.5 text-slate-900 font-medium text-xs max-w-[200px]";
@@ -1120,7 +1540,7 @@
                 
                 const tdLoc = document.createElement('td');
                 tdLoc.className = "px-2.5 py-1.5 whitespace-nowrap text-slate-700 font-medium";
-                tdLoc.innerHTML = `<span class="bg-white text-slate-800 px-2 py-0.5 rounded border border-slate-300 text-xs font-semibold shadow-2xs">${highlight(row._UbicacionFisica, topoTerm)}</span>`;
+                tdLoc.innerHTML = `<span class="inline-flex items-center gap-1"><span class="bg-white text-slate-800 px-2 py-0.5 rounded border border-slate-300 text-xs font-semibold shadow-2xs">${highlight(row._UbicacionFisica, topoTerm)}</span>${warningIconHtml}</span>`;
                 
                 tr.append(tdImg, tdId, tdIsPartOf, tdTit, tdDesc, tdDate, tdNat, tdPlace, tdType, tdFormat, tdCon, tdSub, tdLoc);
                 tbody.appendChild(tr);
@@ -1257,38 +1677,74 @@
             btn.classList.toggle('rotate-180');
         }
 
-        // 8. Visibilidad de Columnas
+        // 8. Visibilidad de Columnas (Dual N9 / N7)
         const btnColToggle = document.getElementById('btn-col-toggle');
         const colMenu = document.getElementById('col-menu');
-        const colCheckboxes = document.querySelectorAll('.col-toggle');
+        const colMenuContent = document.getElementById('col-menu-content');
         const dynamicStyle = document.createElement('style');
         document.head.appendChild(dynamicStyle);
 
-        btnColToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            colMenu.classList.toggle('hidden');
-        });
+        if (btnColToggle && colMenu) {
+            btnColToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                colMenu.classList.toggle('hidden');
+            });
 
-        document.addEventListener('click', (e) => {
-            if (!colMenu.contains(e.target) && e.target !== btnColToggle) {
-                colMenu.classList.add('hidden');
+            document.addEventListener('click', (e) => {
+                if (!colMenu.contains(e.target) && e.target !== btnColToggle) {
+                    colMenu.classList.add('hidden');
+                }
+            });
+        }
+
+        function renderColumnMenu() {
+            if (!colMenuContent) return;
+            if (currentMode === 'n9') {
+                colMenuContent.innerHTML = `
+                    <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="1" class="col-toggle text-corporate-600 rounded"> source</label>
+                    <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="2" class="col-toggle text-corporate-600 rounded"> identifier</label>
+                    <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="3" class="col-toggle text-corporate-600 rounded"> isPartOf</label>
+                    <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="4" class="col-toggle text-corporate-600 rounded"> title</label>
+                    <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="5" class="col-toggle text-corporate-600 rounded"> description</label>
+                    <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="6" class="col-toggle text-corporate-600 rounded"> date</label>
+                    <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="7" class="col-toggle text-corporate-600 rounded"> relation</label>
+                    <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="8" class="col-toggle text-corporate-600 rounded"> coverage</label>
+                    <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="9" class="col-toggle text-corporate-600 rounded"> type</label>
+                    <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="10" class="col-toggle text-corporate-600 rounded"> format</label>
+                    <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="11" class="col-toggle text-corporate-600 rounded"> contributor</label>
+                    <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="12" class="col-toggle text-corporate-600 rounded"> subject</label>
+                    <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="13" class="col-toggle text-corporate-600 rounded"> Ubicación Física</label>
+                `;
+            } else {
+                colMenuContent.innerHTML = `
+                    <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="1" class="col-toggle text-corporate-600 rounded"> Rótulo Físico</label>
+                    <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="2" class="col-toggle text-corporate-600 rounded"> Código ISAD(G)</label>
+                    <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="3" class="col-toggle text-corporate-600 rounded"> 1.2 Título Atribuido</label>
+                    <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="4" class="col-toggle text-corporate-600 rounded"> 1.3 Fechas</label>
+                    <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="5" class="col-toggle text-corporate-600 rounded"> 1.5 Extensión / Soporte</label>
+                    <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="6" class="col-toggle text-corporate-600 rounded"> 3.1 Alcance y Contenido</label>
+                    <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="7" class="col-toggle text-corporate-600 rounded"> Acción</label>
+                `;
             }
-        });
+
+            colMenuContent.querySelectorAll('.col-toggle').forEach(cb => {
+                cb.addEventListener('change', updateColumnVisibility);
+            });
+            updateColumnVisibility();
+        }
 
         function updateColumnVisibility() {
             let css = '';
-            colCheckboxes.forEach(cb => {
-                if (!cb.checked) {
-                    const idx = cb.value;
-                    css += `table th:nth-child(${idx}), table td:nth-child(${idx}) { display: none !important; }\n`;
-                }
-            });
+            if (colMenuContent) {
+                colMenuContent.querySelectorAll('.col-toggle').forEach(cb => {
+                    if (!cb.checked) {
+                        const idx = cb.value;
+                        css += `table th:nth-child(${idx}), table td:nth-child(${idx}) { display: none !important; }\n`;
+                    }
+                });
+            }
             dynamicStyle.textContent = css;
         }
-
-        colCheckboxes.forEach(cb => {
-            cb.addEventListener('change', updateColumnVisibility);
-        });
 
         // 9. Popover Global Flotante para Cabeceras de Tabla (Sin recortes)
         const HEADER_DEFINITIONS = {
@@ -1356,6 +1812,41 @@
                 title: 'Ubicación Física',
                 badge: 'Calculado',
                 content: 'Identificación topográfica calculada de la ubicación del documento físico en el depósito: <b>Caja</b>, <b>Carpeta</b> y número correlativo lineal de <b>Documento</b>.'
+            },
+            n7_rotulo: {
+                title: 'Rótulo Físico (Topografía Limpia)',
+                badge: 'Nivel 7',
+                content: 'Código de agregación físico del contenedor (Caja y Carpeta desvinculados de la serie). Ejemplo: <code>C001</code>, <code>C001-P001</code>.'
+            },
+            n7_identifier: {
+                title: 'Código ISAD(G) (Nivel 7)',
+                badge: 'ISAD(G)',
+                content: 'Código de referencia único del contenedor según el patrón oficial ISAD(G): <code>ES-CEDCS-ZARZA-[SERIE]-C[X]-P[Y]</code>.'
+            },
+            n7_title: {
+                title: '1.2 Título Atribuido',
+                badge: 'Nivel 7',
+                content: 'Denominación sintética del contenido del contenedor (Caja o Carpetilla/Legajo).'
+            },
+            n7_date: {
+                title: '1.3 Fechas de Acumulación',
+                badge: 'Nivel 7',
+                content: 'Rango cronológico extremo de los documentos conservados en el contenedor.'
+            },
+            n7_format: {
+                title: '1.5 Extensión y Soporte',
+                badge: 'Nivel 7',
+                content: 'Unidad de instalación física y tipo de contenedor (ej. <i>1 caja de archivo definitivo</i>, <i>1 carpeta de conservación</i>).'
+            },
+            n7_description: {
+                title: '3.1 Alcance y Contenido',
+                badge: 'Nivel 7',
+                content: 'Resumen archivístico explicativo del conjunto documental reunido en la carpetilla o caja.'
+            },
+            n7_action: {
+                title: 'Acción (Ver Documentos)',
+                badge: 'Interactivo',
+                content: 'Permite saltar directamente al Nivel 9 para consultar los documentos simples catalogados dentro de esta localización.'
             }
         };
 
