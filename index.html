@@ -67,14 +67,18 @@
                 <p class="text-sm text-slate-500 font-medium">Fundación CEDCS</p>
             </div>
             <!-- Selector de Dimensión / Modo Archivístico -->
-            <div class="flex items-center gap-1.5 bg-slate-100 p-1 rounded-lg border border-slate-200 shadow-2xs">
-                <button type="button" id="tab-mode-n9" class="px-3.5 py-1.5 text-xs font-bold rounded-md transition-all shadow-xs bg-white text-corporate-700 flex items-center gap-1.5 cursor-pointer">
-                    <span>📄 Documentos</span>
-                    <span class="text-[10px] font-mono bg-corporate-50 text-corporate-700 px-1.5 py-0.5 rounded border border-corporate-200">Nivel 9</span>
+            <div class="flex items-center gap-1 bg-slate-100 p-1 rounded-lg border border-slate-200 shadow-2xs">
+                <button type="button" id="tab-mode-n9" class="px-3.5 py-1.5 text-xs font-bold rounded-md transition-all shadow-xs bg-slate-900 text-white flex items-center gap-2 cursor-pointer">
+                    <svg class="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                    </svg>
+                    <span>Documentos</span>
                 </button>
-                <button type="button" id="tab-mode-n7" class="px-3.5 py-1.5 text-xs font-semibold rounded-md transition-all text-slate-600 hover:text-slate-900 flex items-center gap-1.5 cursor-pointer">
-                    <span>📁 Localizaciones / Carpetas</span>
-                    <span class="text-[10px] font-mono bg-slate-200/80 text-slate-700 px-1.5 py-0.5 rounded">Nivel 7</span>
+                <button type="button" id="tab-mode-n7" class="px-3.5 py-1.5 text-xs font-semibold rounded-md transition-all text-slate-600 hover:text-slate-900 flex items-center gap-2 cursor-pointer">
+                    <svg class="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                    </svg>
+                    <span>Localizaciones</span>
                 </button>
             </div>
         </div>
@@ -198,17 +202,17 @@
                     <div id="col-menu" class="hidden absolute right-0 mt-2 w-56 bg-white border border-slate-200 shadow-lg rounded-lg z-50 p-2 text-sm max-h-64 overflow-y-auto">
                         <div id="col-menu-content">
                             <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="1" class="col-toggle text-corporate-600 rounded"> source</label>
-                            <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="2" class="col-toggle text-corporate-600 rounded"> identifier</label>
+                            <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" value="2" class="col-toggle text-corporate-600 rounded"> identifier</label>
                             <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="3" class="col-toggle text-corporate-600 rounded"> isPartOf</label>
                             <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="4" class="col-toggle text-corporate-600 rounded"> title</label>
                             <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="5" class="col-toggle text-corporate-600 rounded"> description</label>
                             <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="6" class="col-toggle text-corporate-600 rounded"> date</label>
                             <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="7" class="col-toggle text-corporate-600 rounded"> relation</label>
-                            <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="8" class="col-toggle text-corporate-600 rounded"> coverage</label>
-                            <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="9" class="col-toggle text-corporate-600 rounded"> type</label>
-                            <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="10" class="col-toggle text-corporate-600 rounded"> format</label>
+                            <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" value="8" class="col-toggle text-corporate-600 rounded"> coverage</label>
+                            <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" value="9" class="col-toggle text-corporate-600 rounded"> type</label>
+                            <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" value="10" class="col-toggle text-corporate-600 rounded"> format</label>
                             <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="11" class="col-toggle text-corporate-600 rounded"> contributor</label>
-                            <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="12" class="col-toggle text-corporate-600 rounded"> subject</label>
+                            <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" value="12" class="col-toggle text-corporate-600 rounded"> subject</label>
                             <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="13" class="col-toggle text-corporate-600 rounded"> Ubicación Física</label>
                         </div>
                     </div>
@@ -593,11 +597,8 @@
             currentMode = mode;
 
             if (mode === 'n9') {
-                tabModeN9.className = "px-3.5 py-1.5 text-xs font-bold rounded-md transition-all shadow-xs bg-white text-corporate-700 flex items-center gap-1.5 cursor-pointer";
-                tabModeN9.querySelector('span:last-child').className = "text-[10px] font-mono bg-corporate-50 text-corporate-700 px-1.5 py-0.5 rounded border border-corporate-200";
-                
-                tabModeN7.className = "px-3.5 py-1.5 text-xs font-semibold rounded-md transition-all text-slate-600 hover:text-slate-900 flex items-center gap-1.5 cursor-pointer";
-                tabModeN7.querySelector('span:last-child').className = "text-[10px] font-mono bg-slate-200/80 text-slate-700 px-1.5 py-0.5 rounded";
+                tabModeN9.className = "px-3.5 py-1.5 text-xs font-bold rounded-md transition-all shadow-xs bg-slate-900 text-white flex items-center gap-2 cursor-pointer";
+                tabModeN7.className = "px-3.5 py-1.5 text-xs font-semibold rounded-md transition-all text-slate-600 hover:text-slate-900 flex items-center gap-2 cursor-pointer";
 
                 if (contributorContainer) contributorContainer.classList.remove('hidden');
                 if (subjectContainer) subjectContainer.classList.remove('hidden');
@@ -605,18 +606,15 @@
                 renderColumnMenu();
 
                 btnSearch.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg> Buscar Documentos`;
-                counterContainer.innerHTML = `<span class="text-sm text-slate-600 font-medium">Mostrando <span id="doc-counter" class="text-corporate-700 font-bold mx-1">0</span> documentos</span>`;
+                counterContainer.innerHTML = `<span class="text-sm text-slate-600 font-medium">Mostrando <span id="doc-counter" class="text-slate-900 font-bold mx-1">0</span> documentos</span>`;
 
                 allData = allDataN9;
                 populateFilters(allDataN9);
                 renderTableHeaderN9();
                 applySearch();
             } else {
-                tabModeN7.className = "px-3.5 py-1.5 text-xs font-bold rounded-md transition-all shadow-xs bg-white text-corporate-700 flex items-center gap-1.5 cursor-pointer";
-                tabModeN7.querySelector('span:last-child').className = "text-[10px] font-mono bg-corporate-50 text-corporate-700 px-1.5 py-0.5 rounded border border-corporate-200";
-                
-                tabModeN9.className = "px-3.5 py-1.5 text-xs font-semibold rounded-md transition-all text-slate-600 hover:text-slate-900 flex items-center gap-1.5 cursor-pointer";
-                tabModeN9.querySelector('span:last-child').className = "text-[10px] font-mono bg-slate-200/80 text-slate-700 px-1.5 py-0.5 rounded";
+                tabModeN7.className = "px-3.5 py-1.5 text-xs font-bold rounded-md transition-all shadow-xs bg-slate-900 text-white flex items-center gap-2 cursor-pointer";
+                tabModeN9.className = "px-3.5 py-1.5 text-xs font-semibold rounded-md transition-all text-slate-600 hover:text-slate-900 flex items-center gap-2 cursor-pointer";
 
                 if (contributorContainer) contributorContainer.classList.add('hidden');
                 if (subjectContainer) subjectContainer.classList.add('hidden');
@@ -624,7 +622,7 @@
                 renderColumnMenu();
 
                 btnSearch.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg> Buscar en localizaciones`;
-                counterContainer.innerHTML = `<span class="text-sm text-slate-600 font-medium">Mostrando <span id="doc-counter" class="text-corporate-700 font-bold mx-1">0</span> localizaciones (Cajas / Carpetillas)</span>`;
+                counterContainer.innerHTML = `<span class="text-sm text-slate-600 font-medium">Mostrando <span id="doc-counter" class="text-slate-900 font-bold mx-1">0</span> localizaciones</span>`;
 
                 if (allDataN7.length === 0) {
                     loadN7Data();
@@ -720,6 +718,7 @@
             allData = allDataN9;
             filteredData = [...allData];
             populateFilters(allData);
+            renderColumnMenu();
             renderTableHeaderN9();
             applySearch();
             
@@ -738,6 +737,7 @@
             allData = allDataN7;
             filteredData = [...allData];
             populateFilters(allDataN7);
+            renderColumnMenu();
             renderTableHeaderN7();
             applySearch();
 
@@ -1277,6 +1277,13 @@
 
         // 5. Renderizado de Tabla con Paginación (Dual N9 / N7)
         function renderTable(data) {
+            const tableContainer = document.querySelector('.table-container');
+            if (tableContainer) {
+                tableContainer.scrollLeft = 0;
+                tableContainer.scrollTop = 0;
+            }
+            window.scrollTo(0, 0);
+
             const docCounterEl = document.getElementById('doc-counter');
             if (docCounterEl) docCounterEl.textContent = data.length;
             tbody.innerHTML = '';
@@ -1351,10 +1358,10 @@
                         tdRotulo.innerHTML = `
                             <div class="flex items-center gap-1.5 pl-5">
                                 <span class="text-slate-300 font-sans text-xs select-none">└─</span>
-                                <svg class="w-4 h-4 text-corporate-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <svg class="w-4 h-4 text-slate-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
                                 </svg>
-                                <span class="text-corporate-700 font-bold">${highlight(row.rotulo, null)}</span>
+                                <span class="text-slate-800 font-bold">${highlight(row.rotulo, null)}</span>
                             </div>
                         `;
                     } else {
@@ -1545,6 +1552,27 @@
                 tr.append(tdImg, tdId, tdIsPartOf, tdTit, tdDesc, tdDate, tdNat, tdPlace, tdType, tdFormat, tdCon, tdSub, tdLoc);
                 tbody.appendChild(tr);
             });
+
+            // Reseteo Multi-Paso de Scroll (Vertical y Horizontal) tras renderizado de DOM
+            const resetScrolls = () => {
+                const tableContainer = document.querySelector('.table-container');
+                if (tableContainer) {
+                    tableContainer.scrollTop = 0;
+                    tableContainer.scrollLeft = 0;
+                }
+                const tableWrapper = document.getElementById('table-wrapper');
+                if (tableWrapper) {
+                    tableWrapper.scrollTop = 0;
+                    tableWrapper.scrollLeft = 0;
+                }
+                window.scrollTo(0, 0);
+                document.documentElement.scrollTop = 0;
+                document.body.scrollTop = 0;
+            };
+
+            resetScrolls();
+            requestAnimationFrame(resetScrolls);
+            setTimeout(resetScrolls, 50);
         }
 
         // Event Listeners Botones
@@ -1702,26 +1730,26 @@
             if (currentMode === 'n9') {
                 colMenuContent.innerHTML = `
                     <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="1" class="col-toggle text-corporate-600 rounded"> source</label>
-                    <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="2" class="col-toggle text-corporate-600 rounded"> identifier</label>
+                    <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" value="2" class="col-toggle text-corporate-600 rounded"> identifier</label>
                     <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="3" class="col-toggle text-corporate-600 rounded"> isPartOf</label>
                     <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="4" class="col-toggle text-corporate-600 rounded"> title</label>
                     <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="5" class="col-toggle text-corporate-600 rounded"> description</label>
                     <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="6" class="col-toggle text-corporate-600 rounded"> date</label>
                     <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="7" class="col-toggle text-corporate-600 rounded"> relation</label>
-                    <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="8" class="col-toggle text-corporate-600 rounded"> coverage</label>
-                    <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="9" class="col-toggle text-corporate-600 rounded"> type</label>
-                    <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="10" class="col-toggle text-corporate-600 rounded"> format</label>
+                    <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" value="8" class="col-toggle text-corporate-600 rounded"> coverage</label>
+                    <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" value="9" class="col-toggle text-corporate-600 rounded"> type</label>
+                    <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" value="10" class="col-toggle text-corporate-600 rounded"> format</label>
                     <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="11" class="col-toggle text-corporate-600 rounded"> contributor</label>
-                    <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="12" class="col-toggle text-corporate-600 rounded"> subject</label>
+                    <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" value="12" class="col-toggle text-corporate-600 rounded"> subject</label>
                     <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="13" class="col-toggle text-corporate-600 rounded"> Ubicación Física</label>
                 `;
             } else {
                 colMenuContent.innerHTML = `
                     <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="1" class="col-toggle text-corporate-600 rounded"> Rótulo Físico</label>
-                    <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="2" class="col-toggle text-corporate-600 rounded"> Código ISAD(G)</label>
+                    <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" value="2" class="col-toggle text-corporate-600 rounded"> Código ISAD(G)</label>
                     <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="3" class="col-toggle text-corporate-600 rounded"> 1.2 Título Atribuido</label>
                     <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="4" class="col-toggle text-corporate-600 rounded"> 1.3 Fechas</label>
-                    <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="5" class="col-toggle text-corporate-600 rounded"> 1.5 Extensión / Soporte</label>
+                    <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" value="5" class="col-toggle text-corporate-600 rounded"> 1.5 Extensión / Soporte</label>
                     <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="6" class="col-toggle text-corporate-600 rounded"> 3.1 Alcance y Contenido</label>
                     <label class="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded cursor-pointer"><input type="checkbox" checked value="7" class="col-toggle text-corporate-600 rounded"> Acción</label>
                 `;

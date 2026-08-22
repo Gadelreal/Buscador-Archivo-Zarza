@@ -2,9 +2,13 @@ import openpyxl
 import csv
 import re
 import sys
+import os
 
 def export_nivel7():
-    excel_path = "Descripcion Archivo/Nivel 7.xlsx"
+    if os.path.exists("Nivel 7.xlsx"):
+        excel_path = "Nivel 7.xlsx"
+    else:
+        excel_path = "Descripcion Archivo/Nivel 7.xlsx"
     csv_path = "Nivel 7 (Carpetilla simple).csv"
 
     print(f"Leyendo {excel_path}...")
@@ -44,6 +48,9 @@ def export_nivel7():
         isad_code = str(r[1]).strip() if r[1] is not None else ""
         rotulo = str(r[2]).strip() if r[2] is not None else ""
         title = str(r[3]).strip() if r[3] is not None else ""
+
+        if not rotulo or rotulo == "#VALUE!" or not title or title == "#VALUE!":
+            continue
         date = str(r[4]).strip() if r[4] is not None else ""
         ext_soporte = str(r[5]).strip() if r[5] is not None else ""
         alcance = str(r[6]).strip() if len(r) > 6 and r[6] is not None else ""
