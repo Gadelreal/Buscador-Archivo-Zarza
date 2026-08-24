@@ -20,15 +20,25 @@ El buscador funciona 100% en el lado del cliente (*client-side*), lo que garanti
 
 ## 📂 Estructura del Repositorio
 
+El repositorio contiene dos categorías de archivos: los **necesarios para el funcionamiento web** y los **de mantenimiento y fuentes locales**.
+
+### 🟢 Archivos de Producción (Necesarios en el Servidor Web)
 ```text
-├── index.html                           # Aplicación web de página única (HTML5, Tailwind CSS, JS)
-├── Nivel 7 (Carpetilla simple).csv      # Base de datos de contenedores físicos y localizaciones
-├── Nivel 9 (Documento simple).csv       # Base de datos de documentos catalogados (Dublin Core)
-├── Nivel 7.xlsx                         # Fuente principal Excel de Localizaciones (Nivel 7)
-├── export_nivel7.py                     # Script Python de exportación de Nivel 7.xlsx a CSV
+├── index.html                           # Aplicación web interactiva (UI, Tailwind CSS y JavaScript)
+├── Nivel 7 (Carpetilla simple).csv      # Base de datos activa de contenedores físicos y localizaciones
+├── Nivel 9 (Documento simple).csv       # Base de datos activa de documentos catalogados (Dublin Core)
 ├── Imágenes procesadas/                 # Fotografías principales representativas (.jpg) por identifier
+└── .nojekyll                            # Configuración de servidor (evita bloqueos de nombres con tilde)
+```
+
+### 🟡 Archivos de Fuentes y Mantenimiento Local (No necesarios en la Web)
+```text
+├── Nivel 7.xlsx                         # Fuente principal Excel de Localizaciones (Nivel 7)
+├── Nivel 9 (Documento simple).xlsx       # Fuente principal Excel de Documentos (Nivel 9)
+├── export_nivel7.py                     # Script Python de exportación de Nivel 7.xlsx a CSV
+├── sync_excel_csv.py                    # Script Python de sincronización y validación entre Excel y CSV
 └── .agents/
-    └── AGENTS.md                        # Normas estricta de catalogación archivística (Fundación CEDCS)
+    └── AGENTS.md                        # Manual de normas de catalogación archivística (Fundación CEDCS)
 ```
 
 ---
@@ -46,10 +56,12 @@ A continuación se detallan las **3 opciones principales** para integrarlo en tu
 Este método no altera tu tema de WordPress ni genera conflictos de código CSS/JS.
 
 #### Paso 1: Subir los archivos al servidor
-Sube la carpeta completa del proyecto (o los archivos `index.html`, los `.csv` y la carpeta `Imágenes procesadas/`) a un directorio público en tu servidor web (por ejemplo, mediante FTP o Administrador de Archivos de cPanel/Plesk):
+Sube los **archivos de producción** (`index.html`, los dos archivos `.csv`, `.nojekyll` y la carpeta `Imágenes procesadas/`) a un directorio público en tu servidor web (por ejemplo, mediante FTP o Administrador de Archivos de cPanel/Plesk):
 ```text
 https://tu-web-wordpress.org/buscador-zarza/index.html
 ```
+
+> 💡 **Nota**: Para mantener tu servidor web más ligero y limpio, **no es necesario subir** los archivos Excel (`.xlsx`), los scripts de Python (`.py`) ni el directorio `.agents/`, ya que son herramientas exclusivamente para uso y mantenimiento local.
 
 #### Paso 2: Insertar en la página de WordPress
 1. En el panel de control de WordPress, dirígete a **Páginas ➔ Añadir nueva** (o edita una existente en Gutenberg, Elementor, Divi o Beaver Builder).
