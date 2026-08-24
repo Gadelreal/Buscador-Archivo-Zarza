@@ -144,11 +144,3 @@ Si actualizas la lista de localizaciones en `Nivel 7.xlsx`, ejecuta el script de
 ```bash
 python3 export_nivel7.py
 ```
-
----
-
-## 📜 Licencia y Créditos
-
-* **Productor del Fondo**: Rafael Zarza Ballugera.
-* **Entidad Custodia**: Fundación CEDCS.
-* **Estándar de Metadatos**: Qualified Dublin Core, ISAD(G) y MDM Nivel 7 / Nivel 9.
