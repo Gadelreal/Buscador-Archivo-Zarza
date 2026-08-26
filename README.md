@@ -18,12 +18,9 @@ El buscador funciona 100% en el lado del cliente (*client-side*), lo que garanti
 
 ---
 
-## 📂 Estructura del Repositorio y Política de Publicación en GitHub
+## 📂 Estructura del Repositorio
 
-El proyecto mantiene una **separación estricta** entre los archivos de producción pública (publicados en GitHub) y los archivos máster de trabajo local:
-
-### 🟢 Archivos Públicos en GitHub (Exclusivos para el Buscador Web)
-Únicamente se suben al repositorio los archivos indispensables para la ejecución del buscador estático en web:
+Los archivos indispensables para la ejecución del buscador estático en web son:
 
 ```text
 ├── index.html                           # Aplicación web interactiva (UI, Tailwind CSS y JavaScript)
@@ -31,49 +28,9 @@ El proyecto mantiene una **separación estricta** entre los archivos de producci
 ├── Nivel 9 (Documento simple).csv       # Base de datos pública de documentos catalogados (Dublin Core)
 ├── Imágenes procesadas/                 # Fotografías principales representativas (.jpg) por identifier
 ├── README.md                            # Documentación del proyecto
-├── .gitignore                           # Configuración de exclusiones de archivos de trabajo local
+├── .gitignore                           # Configuración de exclusiones
 └── .nojekyll                            # Configuración para GitHub Pages (evita bloqueo de rutas con tildes)
 ```
-
-### 🔒 Archivos de Trabajo Local (NO se suben a GitHub - Exclusivos en Disco Local)
-Los archivos máster en Excel, scripts de sincronización interna, fotografías originales y notas de trabajo permanecen en local mediante `.gitignore`:
-
-```text
-├── Nivel 7.xlsx                         # Fuente máster Excel de Localizaciones (Nivel 7)
-├── Nivel 9 (Documento simple).xlsx       # Fuente máster Excel de Documentos (Nivel 9)
-├── sync_excel_csv.py                    # Script de sincronización bidireccional entre Excel y CSV
-├── export_nivel7.py                     # Script auxiliar de exportación Nivel 7
-├── Imagenes a procesar/                 # Fotografías originales recibidas para catalogar
-├── Descripcion Archivo/                 # Documentación y notas de trabajo
-└── .agents/                             # Manuales y reglas internas de catalogación IA
-```
-
----
-
-## 🛠️ Desarrollo Local y Sincronización
-
-### 1. Ejecutar el buscador en local
-Para probar el buscador localmente en tu ordenador:
-```bash
-python3 -m http.server 8085
-```
-Abre en tu navegador: `http://localhost:8085`
-
-### 2. Sincronizar cambios desde los Excel máster a CSV
-Cuando actualices los archivos Excel en local, sincroniza los CSV del buscador con el script:
-
-* **Sincronizar Nivel 7 (Localizaciones)** desde `Nivel 7.xlsx`:
-  ```bash
-  python3 sync_excel_csv.py n7-to-csv
-  ```
-* **Sincronizar Nivel 9 (Documentos)** desde `Nivel 9 (Documento simple).xlsx`:
-  ```bash
-  python3 sync_excel_csv.py to-csv
-  ```
-* **Generar Excel Nivel 9** desde `Nivel 9 (Documento simple).csv`:
-  ```bash
-  python3 sync_excel_csv.py to-excel
-  ```
 
 ---
 
