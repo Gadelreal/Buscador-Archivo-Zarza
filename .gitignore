@@ -4,29 +4,32 @@
 *.mp4
 *.mov
 
-# Carpetas ignoradas para repositorio GitHub
-Descripcion Archivo/
+# Archivos de trabajo locales (Excel máster, scripts de utilidad y carpetas de IA)
+*.xlsx
+*.xls
+*.py
+server.js
+.agents/
 
-Documentaci*n de referencia/
+# Carpetas de trabajo e imágenes de origen (permanecen solo en local)
+Descripcion Archivo/
+Documentacion de referencia/
 Documentación de referencia/
 Documentación de referencia/
-
-Ima*genes a procesar/
 Imagenes a procesar/
+Imágenes a procesar/
 Imágenes a procesar/
-
-Logi*stica y gastos/
+Logistica y gastos/
 Logística y gastos/
 Logística y gastos/
-
-[Pp]ropuesta [Cc]omercial/
 Propuesta comercial/
 Propuesta Comercial/
-
 Respaldo_Chat_IA/
-
 Triaje/
 
-# Imágenes procesadas catalogadas en Nivel 9
-# (Permitir subir todas las imágenes procesadas al repositorio)
-
+# Archivos PERMITIDOS en el servidor/repositorio GitHub para el buscador web:
+# - index.html
+# - Nivel 7 (Carpetilla simple).csv
+# - Nivel 9 (Documento simple).csv
+# - README.md
+# - Imágenes procesadas/ (Fotografías representativas .jpg)
