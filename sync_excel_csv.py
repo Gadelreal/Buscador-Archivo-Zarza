@@ -112,12 +112,67 @@ def excel_to_csv(xlsx_path="Nivel 9 (Documento simple).xlsx", csv_path="Nivel 9 
     return True
 
 
+def n7_excel_to_csv(xlsx_path="Nivel 7.xlsx", csv_path="Nivel 7 (Carpetilla simple).csv"):
+    import openpyxl
+
+    if not os.path.exists(xlsx_path):
+        print(f"[ERROR] No se encuentra el archivo fuente Excel: {xlsx_path}")
+        return False
+
+    wb = openpyxl.load_workbook(xlsx_path, data_only=True)
+    ws = wb['Nivel 7'] if 'Nivel 7' in wb.sheetnames else wb.active
+    rows = list(ws.iter_rows(values_only=True))
+
+    header = ['source_code', 'identifier', 'rotulo', 'title', 'date', 'format', 'description', 'relation']
+    csv_rows = [header]
+
+    for r in rows[1:]:
+        source_code = str(r[0] or '').strip()
+        identifier = str(r[1] or '').strip()
+        rotulo = str(r[2] or '').strip()
+        title = str(r[3] or '').strip()
+        date = str(r[4] or '').strip()
+        fmt = str(r[5] or '').strip()
+        desc = str(r[6] or '').strip()
+        
+        if not source_code and not title and (not identifier or identifier == 'ES-CEDCS-ZARZA-'):
+            continue
+            
+        if rotulo == '#VALUE!':
+            parts = source_code.split('-')
+            if len(parts) >= 2:
+                rotulo = '-'.join(parts[1:])
+            else:
+                rotulo = ''
+                
+        relation = ''
+        if len(r) > 7 and r[7] and str(r[7]).strip():
+            relation = str(r[7]).strip()
+        if not relation and identifier:
+            parts = identifier.split('-')
+            if len(parts) >= 4 and parts[0] == 'ES' and parts[1] == 'CEDCS' and parts[2] == 'ZARZA':
+                relation = parts[3]
+        if not relation and source_code:
+            relation = source_code.split('-')[0]
+            
+        csv_rows.append([source_code, identifier, rotulo, title, date, fmt, desc, relation])
+
+    with open(csv_path, 'w', encoding='utf-8', newline='') as f:
+        writer = csv.writer(f, lineterminator='\n')
+        writer.writerows(csv_rows)
+
+    print(f"[ÉXITO] Archivo Nivel 7 CSV sincronizado correctamente desde Excel: {csv_path} ({len(csv_rows)-1} registros)")
+    return True
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Sincronizador CSV <-> Excel para Archivo Rafael Zarza")
-    parser.add_argument("action", choices=["to-excel", "to-csv"], help="Acción a realizar: to-excel (CSV -> XLSX) o to-csv (XLSX -> CSV)")
+    parser.add_argument("action", choices=["to-excel", "to-csv", "n7-to-csv"], help="Acción a realizar: to-excel, to-csv, n7-to-csv")
     args = parser.parse_args()
 
     if args.action == "to-excel":
         csv_to_excel()
     elif args.action == "to-csv":
         excel_to_csv()
+    elif args.action == "n7-to-csv":
+        n7_excel_to_csv()

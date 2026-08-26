@@ -69,6 +69,14 @@
             line-clamp: unset !important;
             white-space: normal !important;
         }
+        /* Modo Incrustado WordPress (?embed=true) */
+        body.is-embedded header {
+            display: none !important;
+        }
+        body.is-embedded main {
+            padding-top: 0.5rem !important;
+            max-width: 100% !important;
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 h-screen overflow-hidden flex flex-col font-sans">
@@ -429,6 +437,8 @@
         let allData = []; // Referencia al dataset activo
         let filteredData = [];
         let filterOptions = {};
+        let docCountMap = new Map(); // Pre-índice ultra-rápido de conteo de documentos por localización
+        let lastFilterDataRef = null; // Cache para evitar reconstrucciones innecesarias de filtros
 
         // Estado de Paginación
         let currentPage = 1;
@@ -593,58 +603,34 @@
         const colIsPartOf = "isPartOf";
         const colRelation = "relation";
 
-        // 1. Cargar Datos Automáticamente (Nivel 7 por defecto)
+        // 1. Cargar Datos Automáticamente (Carga Paralela con Promise.all)
         document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('embed') === 'true') {
+                document.body.classList.add('is-embedded');
+            }
             initAutocompletes();
             setupModeTabs();
-            loadN7Data();
-            // Pre-cargar Nivel 9 en segundo plano para saltos e intercambio instantáneo
-            Papa.parse('Nivel 9 (Documento simple).csv', {
-                download: true,
-                header: true,
-                skipEmptyLines: true,
-                complete: function(results) {
-                    allDataN9 = results.data.map(row => {
-                        let physLocation = "Desconocida";
-                        const idValue = row[colId] || "";
-                        const regexNew = /C(\d+)-P(\d+)-D(\d+)/i;
-                        const regexOld = /(?:ARCH|CAJA)(\w+)(?:-CARP(\w+))?-DOC(\w+)/i;
-                        const matchNew = idValue.match(regexNew);
-                        const matchOld = idValue.match(regexOld);
-                        if (matchNew) {
-                            physLocation = `Caja ${matchNew[1]}, Carpeta ${matchNew[2]}, Doc ${matchNew[3]}`;
-                        } else if (matchOld) {
-                            const isCaja = idValue.toUpperCase().includes('CAJA');
-                            const prefix = isCaja ? 'Caja' : 'Archivador';
-                            if (matchOld[2]) {
-                                physLocation = `${prefix} ${matchOld[1]}, Carpeta ${matchOld[2]}, Doc ${matchOld[3]}`;
-                            } else {
-                                physLocation = `${prefix} ${matchOld[1]}, Doc ${matchOld[3]}`;
-                            }
-                        }
-                        let series = "Sin Serie";
-                        if (row[colRelation] && row[colRelation].trim()) {
-                            const rawRelation = row[colRelation].trim();
-                            series = rawRelation.charAt(0).toUpperCase() + rawRelation.slice(1).toLowerCase();
-                        } else {
-                            const seriesMatch = idValue.match(/^ES-CEDCS-ZARZA-(.*?)-(?:C\d+|ARCH|CAJA)/i);
-                            if (seriesMatch) {
-                                const rawSeries = seriesMatch[1];
-                                if (rawSeries.startsWith('[') && rawSeries.endsWith(']')) {
-                                    series = rawSeries;
-                                } else {
-                                    series = rawSeries.charAt(0).toUpperCase() + rawSeries.slice(1).toLowerCase();
-                                }
-                            }
-                        }
-                        row["_UbicacionFisica"] = physLocation;
-                        row["_Serie"] = series;
-                        return row;
-                    });
-                    if (currentMode === 'n7' && allDataN7.length > 0) {
-                        applySearch();
-                    }
-                }
+
+            const fetchN7 = new Promise((resolve, reject) => {
+                Papa.parse('Nivel 7 (Carpetilla simple).csv', {
+                    download: true, header: true, skipEmptyLines: true,
+                    complete: res => resolve(res.data), error: err => reject(err)
+                });
+            });
+
+            const fetchN9 = new Promise((resolve, reject) => {
+                Papa.parse('Nivel 9 (Documento simple).csv', {
+                    download: true, header: true, skipEmptyLines: true,
+                    complete: res => resolve(res.data), error: err => reject(err)
+                });
+            });
+
+            Promise.all([fetchN7, fetchN9]).then(([dataN7, dataN9]) => {
+                processDataN9(dataN9);
+                processDataN7(dataN7);
+            }).catch(err => {
+                console.error("Error al cargar archivos CSV en paralelo:", err);
             });
         });
 
@@ -742,15 +728,20 @@
             allDataN9 = data.map(row => {
                 let physLocation = "Desconocida";
                 const idValue = row[colId] || "";
+                const partOf = row[colIsPartOf] || "";
                 
-                const regexNew = /C(\d+)-P(\d+)-D(\d+)/i;
+                const regexNewFull = /C(\d+)-P(\d+)-D(\d+)/i;
+                const regexNewNoP = /C(\d+)-D(\d+)/i;
                 const regexOld = /(?:ARCH|CAJA)(\w+)(?:-CARP(\w+))?-DOC(\w+)/i;
 
-                const matchNew = idValue.match(regexNew);
+                const matchFull = idValue.match(regexNewFull);
+                const matchNoP = idValue.match(regexNewNoP);
                 const matchOld = idValue.match(regexOld);
                 
-                if (matchNew) {
-                    physLocation = `Caja ${matchNew[1]}, Carpeta ${matchNew[2]}, Doc ${matchNew[3]}`;
+                if (matchFull) {
+                    physLocation = `Caja ${matchFull[1]}, Carpeta ${matchFull[2]}, Doc ${matchFull[3]}`;
+                } else if (matchNoP) {
+                    physLocation = `Caja ${matchNoP[1]}, Doc ${matchNoP[2]}`;
                 } else if (matchOld) {
                     const isCaja = idValue.toUpperCase().includes('CAJA');
                     const prefix = isCaja ? 'Caja' : 'Archivador';
@@ -758,6 +749,16 @@
                         physLocation = `${prefix} ${matchOld[1]}, Carpeta ${matchOld[2]}, Doc ${matchOld[3]}`;
                     } else {
                         physLocation = `${prefix} ${matchOld[1]}, Doc ${matchOld[3]}`;
+                    }
+                } else if (partOf) {
+                    const mPartOfP = partOf.match(/C(\d+)-P(\d+)/i);
+                    const mPartOfC = partOf.match(/C(\d+)/i);
+                    const mDoc = idValue.match(/D(\d+)/i);
+                    const docStr = mDoc ? `, Doc ${parseInt(mDoc[1], 10)}` : '';
+                    if (mPartOfP) {
+                        physLocation = `Caja ${parseInt(mPartOfP[1], 10)}, Carpeta ${parseInt(mPartOfP[2], 10)}${docStr}`;
+                    } else if (mPartOfC) {
+                        physLocation = `Caja ${parseInt(mPartOfC[1], 10)}${docStr}`;
                     }
                 }
 
@@ -780,6 +781,26 @@
                 row["_UbicacionFisica"] = physLocation;
                 row["_Serie"] = series;
                 return row;
+            });
+
+            // Pre-indexar conteo de documentos por localización (Acceso O(1) a 0 ms)
+            docCountMap.clear();
+            allDataN9.forEach(doc => {
+                const partOf = (doc[colIsPartOf] || "").trim().toUpperCase();
+                const id = (doc[colId] || "").trim().toUpperCase();
+                if (partOf) {
+                    docCountMap.set(partOf, (docCountMap.get(partOf) || 0) + 1);
+                }
+                const matchFolder = id.match(/C\d+-P\d+/i);
+                if (matchFolder) {
+                    const code = matchFolder[0].toUpperCase();
+                    if (code !== partOf) docCountMap.set(code, (docCountMap.get(code) || 0) + 1);
+                }
+                const matchBox = id.match(/C\d+/i);
+                if (matchBox) {
+                    const code = matchBox[0].toUpperCase();
+                    if (code !== partOf) docCountMap.set(code, (docCountMap.get(code) || 0) + 1);
+                }
             });
 
             allData = allDataN9;
@@ -1361,21 +1382,29 @@
             tbody.innerHTML = '';
 
             const vGen = fGeneral.value.trim();
+            // Precompilación de RegExp para resaltado (Optimización de CPU)
+            let generalRegex = null;
+            if (vGen) {
+                const escapedVGen = escapeHTML(vGen).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                generalRegex = new RegExp(`(${escapedVGen})`, 'gi');
+            }
+
             const highlight = (text, specificTerm) => {
                 if (!text || text === "-") return "-";
                 let str = escapeHTML(text);
-                let terms = [vGen];
-                if (Array.isArray(specificTerm)) {
-                    terms = terms.concat(specificTerm);
-                } else if (specificTerm) {
-                    terms.push(specificTerm);
+                if (specificTerm) {
+                    let terms = [vGen];
+                    if (Array.isArray(specificTerm)) terms = terms.concat(specificTerm);
+                    else terms.push(specificTerm);
+                    const activeTerms = terms.filter(t => t && t.length > 0);
+                    const uniqueTerms = [...new Set(activeTerms.map(t => t.toLowerCase()))].sort((a,b) => b.length - a.length);
+                    if (uniqueTerms.length === 0) return str;
+                    const escapedTerms = uniqueTerms.map(t => escapeHTML(t).replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+                    const regex = new RegExp(`(${escapedTerms.join('|')})`, 'gi');
+                    return str.replace(regex, `<mark class="bg-yellow-300 text-slate-900 px-0.5 rounded-sm shadow-sm">$1</mark>`);
                 }
-                const activeTerms = terms.filter(t => t && t.length > 0);
-                const uniqueTerms = [...new Set(activeTerms.map(t => t.toLowerCase()))].sort((a,b) => b.length - a.length);
-                if (uniqueTerms.length === 0) return str;
-                const escapedTerms = uniqueTerms.map(t => escapeHTML(t).replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
-                const regex = new RegExp(`(${escapedTerms.join('|')})`, 'gi');
-                return str.replace(regex, `<mark class="bg-yellow-300 text-slate-900 px-0.5 rounded-sm shadow-sm">$1</mark>`);
+                if (!generalRegex) return str;
+                return str.replace(generalRegex, `<mark class="bg-yellow-300 text-slate-900 px-0.5 rounded-sm shadow-sm">$1</mark>`);
             };
 
             if (data.length === 0) {

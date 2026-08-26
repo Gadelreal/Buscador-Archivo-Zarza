@@ -66,12 +66,12 @@ https://tu-web-wordpress.org/buscador-zarza/index.html
 #### Paso 2: Insertar en la página de WordPress
 1. En el panel de control de WordPress, dirígete a **Páginas ➔ Añadir nueva** (o edita una existente en Gutenberg, Elementor, Divi o Beaver Builder).
 2. Añade un bloque de **HTML Personalizado** (*Custom HTML*).
-3. Pega el siguiente código:
+3. Pega el siguiente código (utiliza `?embed=true` al final de la URL para ocultar la cabecera del título y lograr una integración limpia dentro del tema de tu web):
 
 ```html
 <div class="zarza-iframe-container" style="width: 100%; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
     <iframe 
-        src="https://tu-web-wordpress.org/buscador-zarza/index.html" 
+        src="https://tu-web-wordpress.org/buscador-zarza/index.html?embed=true" 
         width="100%" 
         height="950px" 
         style="border: none; width: 100%; min-height: 850px; display: block;" 
