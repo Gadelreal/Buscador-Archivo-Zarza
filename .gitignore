@@ -3,6 +3,7 @@
 *.log
 *.mp4
 *.mov
+__pycache__/
 
 # Archivos de trabajo locales (Excel máster, scripts de utilidad y carpetas de IA)
 *.xlsx

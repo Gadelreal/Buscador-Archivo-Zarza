@@ -11,7 +11,8 @@ El buscador funciona 100% en el lado del cliente (*client-side*), lo que garanti
 * **Búsqueda Dual en 2 Dimensiones**:
   * **📁 Localizaciones (Nivel 7)**: Navegación jerárquica por cajas (`C001`, `C002`...) y carpetillas de conservación (`C001-P001`...). Incluye botón interactivo `Ver X docs ➔` para saltar a los documentos alojados en cada contenedor.
   * **📄 Documentos (Nivel 9)**: Microdescripción completa de documentos simples, con miniaturas representativas, etiquetas de tesauro y avisos de ubicación física.
-* **Filtros Avanzados**: Búsqueda textual en tiempo real, filtro jerárquico de Cajas/Carpetas, selección múltiple de Series y Fechas extremas.
+* **Filtros Avanzados y Resaltado Dinámico**: Búsqueda textual en tiempo real, filtro jerárquico de Cajas/Carpetas, selección múltiple de Series y Fechas extremas con resaltado visual de filtros activos y contador dinámico.
+* **Cápsulas de Materia Interactivas y Visor Museístico**: Haz clic en cualquier etiqueta temática (*subject*) para filtrar el catálogo instantáneamente y visualiza imágenes ampliadas sobre un marco neutro de calidad museística.
 * **Fácil Despliegue de Filas**: Haz clic en cualquier fila para desplegar simultáneamente todas sus columnas largas (`Título`, `Descripción`, `Contribuidor`, `Materias`).
 * **Personalización de Columnas**: Menú desplegable para ocultar/mostrar columnas según la necesidad del archivero o visitante.
 * **Carga Ultrarrápida**: Carga paralela de archivos estandarizados CSV (`Nivel 9 (Documento simple).csv` y `Nivel 7 (Carpetilla simple).csv`).
