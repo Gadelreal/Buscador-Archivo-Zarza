@@ -2092,17 +2092,6 @@
                     popover.dataset.activeKey = '';
                 }
             }
-        });
-
-    </script>
-    <!-- Floating Header Tooltip Popover -->
-    <div id="global-header-popover" class="hidden fixed z-[999999] w-80 bg-slate-900 text-white text-xs p-4 rounded-xl shadow-2xl border border-slate-700 leading-relaxed font-normal normal-case pointer-events-auto">
-        <div id="popover-title" class="font-semibold text-corporate-300 mb-1.5 flex items-center justify-between"></div>
-        <div id="popover-body" class="text-slate-200"></div>
-    </div>
-</body>
-</html>
-
         // Delegación de clic interactivo en Cápsulas de Materia (subject)
         document.addEventListener('click', (e) => {
             const badge = e.target.closest('.subject-capsule-badge');
@@ -2123,3 +2112,11 @@
                 }
             }
         });
+    </script>
+    <!-- Floating Header Tooltip Popover -->
+    <div id="global-header-popover" class="hidden fixed z-[999999] w-80 bg-slate-900 text-white text-xs p-4 rounded-xl shadow-2xl border border-slate-700 leading-relaxed font-normal normal-case pointer-events-auto">
+        <div id="popover-title" class="font-semibold text-corporate-300 mb-1.5 flex items-center justify-between"></div>
+        <div id="popover-body" class="text-slate-200"></div>
+    </div>
+</body>
+</html>
