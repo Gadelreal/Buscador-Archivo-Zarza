@@ -1087,8 +1087,11 @@
                     const boxNumMatch = selectedBox.match(/\d+/);
                     const boxNumStr = boxNumMatch ? parseInt(boxNumMatch[0], 10).toString() : "";
 
-                    const matchesCode = rowRotulo.includes(selectedBox) || rowId.includes(selectedBox);
-                    const matchesPhys = boxNumStr ? rowPhys.includes(`CAJA ${boxNumStr}`) : false;
+                    const codeRegex = boxNumStr ? new RegExp(`(?:^|[-_ ])(?:C|CAJA|ARCH)0*${boxNumStr}(?=[-_ ,]|$)`, 'i') : null;
+                    const physRegex = boxNumStr ? new RegExp(`\\b(?:CAJA|ARCH(?:IVADOR)?)\\s+0*${boxNumStr}\\b`, 'i') : null;
+
+                    const matchesCode = (codeRegex && (codeRegex.test(rowRotulo) || codeRegex.test(rowId))) || rowRotulo.includes(selectedBox) || rowId.includes(selectedBox);
+                    const matchesPhys = physRegex ? physRegex.test(rowPhys) : false;
 
                     if (!matchesCode && !matchesPhys) {
                         return false;
